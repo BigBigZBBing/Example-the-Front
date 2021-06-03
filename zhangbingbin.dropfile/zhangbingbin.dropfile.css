@@ -1,0 +1,15 @@
+.zhangbingbin-drop {
+    border: 1px dashed lightgray;
+    width: 400px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: lightgray;
+}
+
+.zhangbingbin-drop:hover {
+    border: 1px dashed grey;
+    cursor: pointer;
+}

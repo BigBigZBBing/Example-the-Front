@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="zhangbingbin.dropfile.css">
+    <script src="zhangbingbin.drop.js" charset="utf-8"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="block" class="zhangbingbin-drop">
+        <p>拖拽文件进入区域</p>
+    </div>
+    <script>
+        zhangbingbin.drop(
+            document.getElementById("block"), {
+            multiple: true
+            , done: function (files) {
+                console.log(files);
+            }
+            , error: function () {
+
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+.dbUI-select {
+    position: relative;
+    height: 25px;
+    width: 180px;
+}
+
+.dbUI-select * {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    user-select: none;
+    outline: none;
+}
+
+.dbUI-select .dbUI-select-input {
+    border: 2px inset;
+    height: 100%;
+    width: 145px;
+    outline: none;
+    padding-left: 5px;
+    padding-right: 30px;
+    background: linear-gradient(#FFFFDD, rgb(250, 250, 228));
+}
+
+.dbUI-select .dbUI-select-font {
+    position: absolute;
+    top: 15%;
+    left: 2%;
+    width: 145px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.dbUI-select .dbUI-select-font label {
+    background-color: #3d93da;
+}
+
+.dbUI-select .dbUI-select-btn {
+    position: absolute;
+    top: 2px;
+    right: -2px;
+    display: flex;
+    width: 15px;
+    height: 21px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 2px outset;
+    background-color: #F0F0F0;
+}
+
+.dbUI-select .dbUI-select-btn:active {
+    border-style: inset;
+}
+
+.dbUI-select .dbUI-select-container {
+    width: auto;
+    height: auto;
+    background: white;
+    border: 2px inset;
+    position: absolute;
+    display: none;
+}
+
+.dbUI-select .dbUI-select-container.show {
+    display: block;
+}
+
+.dbUI-select .dbUI-select-container table {
+    text-align: center;
+    width: 100%;
+}
+
+.dbUI-select-container-content-thead {
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.dbUI-select-container-content-thead::-webkit-scrollbar {
+    background-color: #F5F5F5;
+}
+
+.dbUI-select-container-content-thead .box {
+    flex: 1;
+}
+
+.dbUI-select-container-content-thead .col {
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 1px solid lightgray;
+    height: 100%;
+    text-align: center;
+}
+
+.dbUI-select-container-content-thead .col:last-child {
+    border: 0;
+}
+
+.dbUI-select .dbUI-select-container table td {
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 1px solid lightgray;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.dbUI-select .dbUI-select-container table td:last-child {
+    border: 0;
+}
+
+.dbUI-select .dbUI-select-container table tbody tr.show {
+    background-color: #3d93da;
+}
+
+.dbUI-select .dbUI-select-container .dbUI-select-container-content {
+    overflow-y: scroll;
+    height: 200px;
+    min-height: 100px;
+}
+
+.dbUI-select .dbUI-select-container .dbUI-select-container-help {
+    background-color: #F0F0F0;
+    height: 20px;
+    width: auto;
+}
+
+.dbUI-select .dbUI-select-container .dbUI-select-container-help input {
+    border: 2px outset;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px 0 5px;
+    vertical-align: middle;
+    line-height: 50%;
+}
+
+.dbUI-select .dbUI-select-container .dbUI-select-container-help div {
+    float: right;
+    height: 20px;
+    width: 15px;
+    font-size: 20px;
+    line-height: 100%;
+    cursor: pointer;
+    color: rgb(149, 149, 149);
+}
+
+.dbUI-select .dbUI-select-container .dbUI-select-container-help input:active {
+    border-style: inset;
+}

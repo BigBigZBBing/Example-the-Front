@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="zhangbingbin.selectgrid.css">
+    <script src="zhangbingbin.selectgrid.js"></script>
+</head>
+
+<body>
+    <div class="dbUI-select" width="300"></div>
+    <script>
+        var cols = [
+            { name: "列1", field: "col1", width: 100, key: true },
+            { name: "列2", field: "col2" },
+            { name: "列3", field: "col3" }
+        ];
+
+        var data = [
+            { col1: "ORD", col2: "测试数据1", col3: "测试数据1" },
+            { col1: "YYZ", col2: "测试数据2", col3: "测试数据2" },
+            { col1: "HKG", col2: "测试数据3", col3: "测试数据3" },
+            { col1: "DDW", col2: "测试数据4", col3: "测试数据4" },
+            { col1: "KKG", col2: "测试数据5", col3: "测试数据5" },
+            { col1: "KGS", col2: "测试数据6", col3: "测试数据6" },
+            { col1: "YYD", col2: "测试数据7", col3: "测试数据7" },
+        ];
+        zhangbingbin.selectgrid(cols, data, function (viewData) {
+            console.log(viewData);
+            return viewData.col1 + "|" + viewData.col2;
+        });
+    </script>
+</body>
+
+</html>
