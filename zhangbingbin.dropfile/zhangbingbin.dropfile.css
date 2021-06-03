@@ -1,4 +1,4 @@
-.zhangbingbin-drop {
+.dbUI-drop {
     border: 1px dashed lightgray;
     width: 400px;
     height: 200px;
@@ -9,7 +9,7 @@
     color: lightgray;
 }
 
-.zhangbingbin-drop:hover {
+.dbUI-drop:hover {
     border: 1px dashed grey;
     cursor: pointer;
 }
