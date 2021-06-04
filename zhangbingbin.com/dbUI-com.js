@@ -48,11 +48,10 @@
 
     /**
      * @name: 对象劫持
-     * @param {*} obj 劫持对象
-     * @param {*} key 对象的键
+     * @param {*} obj   劫持对象
+     * @param {*} key   对象的键
      * @param {*} getfc 取值回调
      * @param {*} setfc 赋值回调
-     * @return {*}
      */
     $dbUI.defineProp = function (obj, key, getfc, setfc) {
         var t = null;
@@ -74,7 +73,7 @@
      * @param {*} original
      * @return {*}
      */
-    $db.defineProxy = function (proxyObject, callback, penetrate, prevObject, prevkey, original) {
+    $dbUI.defineProxy = function (proxyObject, callback, penetrate, prevObject, prevkey, original) {
         if (typeof (proxyObject) != "object") return;
         if (!original) original = proxyObject;
         if (penetrate)
@@ -100,12 +99,38 @@
 
     /**
      * @name: 位数不够前面补0
-     * @param {*} value 原始值
-     * @param {*} num 位数
-     * @return {*}
+     * @param {*} num   补充位数
+     * @return {*}      结果
      */
-    $dbUI.PadLeft = function (value, num) {
-        return (Array(num).join(0) + value).slice(-num);
+    String.prototype.PadLeft = function (num) {
+        return (Array(num).join(0) + this).slice(-num);
+    }
+
+    /**
+     * @name: 去除头尾空格
+     * @param {*}
+     * @return {*}
+     */    
+    String.prototype.Trim = function () {
+        return this.replace(/(^\s*)|(\s*$)/g, "");
+    }
+
+    /**
+     * @name: 去除头部空格
+     * @param {*}
+     * @return {*}
+     */    
+    String.prototype.TrimLeft = function () {
+        return this.replace(/(^\s*)/g, "");
+    }
+
+    /**
+     * @name: 去除尾部空格
+     * @param {*}
+     * @return {*}
+     */    
+    String.prototype.TrimRight = function () {
+        return this.replace(/(\s*$)/g, "");
     }
 
 }(window))

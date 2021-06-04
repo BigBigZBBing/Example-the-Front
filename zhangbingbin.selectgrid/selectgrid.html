@@ -7,12 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="dbUI-selectgrid.css">
+    <script src="../zhangbingbin.com/dbUI-com.js"></script>
     <script src="dbUI-selectgrid.js"></script>
 </head>
 
 <body>
     <div class="dbUI-select" width="300"></div>
     <script>
+        console.log($dbUI);
+
         var cols = [
             { name: "列1", field: "col1", width: 100, key: true },
             { name: "列2", field: "col2" },
@@ -28,7 +31,7 @@
             { col1: "KGS", col2: "测试数据6", col3: "测试数据6" },
             { col1: "YYD", col2: "测试数据7", col3: "测试数据7" },
         ];
-        zhangbingbin.selectgrid(cols, data, function (viewData) {
+        $dbUI.selectgrid(cols, data, function (viewData) {
             console.log(viewData);
             return viewData.col1 + "|" + viewData.col2;
         });
