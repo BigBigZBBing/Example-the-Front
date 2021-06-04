@@ -1,6 +1,4 @@
-(function (win) {
-    win.zhangbingbin = {};
-    win.zhangbingbin.select = {};
+(function ($dbUI) {
     function selectgrid(cols, data, callback) {
         var tempData = data;
         var nFocus = false;
@@ -216,5 +214,5 @@
             }
         });
     }
-    win.zhangbingbin.selectgrid = selectgrid;
-}(window));
+    $dbUI.selectgrid = selectgrid;
+}($dbUI));

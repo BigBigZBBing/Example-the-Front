@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="dbUI-Cron.css">
-
+    <link rel="stylesheet" href="dbUI-cron.css">
+    <script src="dbUI-cron.js"></script>
+    <script src="dbUI-cronanlaytice.js"></script>
 </head>
 
 <body>
@@ -21,13 +22,16 @@
     <div id="contanier">
 
     </div>
-    <script src="dbUI-Cron.js"></script>
-    <script src="dbUI-CronAnaly.js"></script>
+
     <script>
+        $dbUI.cron();
+
         function CronAnalytice() {
             let input = document.getElementById("cronBtn");
             let config = document.getElementById("config");
-            let dates = $db.CronAnalytice(input.value, new Date());
+            //使用解析
+            let dates = $db.cronanalytice(input.value, new Date());
+
             let contanier = document.getElementById("contanier");
             contanier.innerHTML = "";
             if (config.classList.contains("show")) config.classList.remove("show");

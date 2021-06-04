@@ -1,6 +1,4 @@
-(function ($) {
-    //沙箱对外通道
-    $.zhangbingbin = {};
+(function ($dbUI) {
     //内部文件容器
     let continers = new Array();
     //发送的表单
@@ -265,5 +263,5 @@
         InitSendEvent();
     };
 
-    $.zhangbingbin.drop = _dropComponent;
-}(window));
+    $dbUI.drop = _dropComponent;
+}($dbUI));

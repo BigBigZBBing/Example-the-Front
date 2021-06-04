@@ -1,4 +1,4 @@
-(function ($db) {
+(function ($dbUI) {
     let Cron = function () {
         let temp = this;
         this.Seconds = new Int32Array(60);
@@ -101,7 +101,7 @@
         } catch (error) {
             console.log(error);
         }
-    } $db.CronAnalytice = CronAnalytice;
+    } 
 
     function speed(arr, now) {
         let addTime = 0;
@@ -538,4 +538,6 @@
         }
         return day;
     }
-}(window.$db))
+
+    $dbUI.cronanalytice = CronAnalytice;
+}($dbUI))

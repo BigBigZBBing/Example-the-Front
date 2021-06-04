@@ -6,7 +6,7 @@
 /**
  * 业务沙箱
  */
-(function ($db) {
+(function ($dbUI) {
     var crons = document.getElementsByClassName("dbUI-cron");
     for (let i = 0; i < crons.length; i++) {
         const ele = crons[i];
@@ -747,7 +747,7 @@
  * 范围选择框
  */
 (function ($db) {
-    function rangeRender() {
+    function cron() {
         let range = document.getElementsByClassName("dbUI-range");
         for (let i = 0; i < range.length; i++) {
             const ele = range[i],
@@ -995,6 +995,6 @@
                 parent.removeChild(ele);
             }
         }
-    } rangeRender();
-    $db.rangeRender = rangeRender;
-}($db));
+    }
+    $dbUI.cron = cron;
+}($dbUI));
