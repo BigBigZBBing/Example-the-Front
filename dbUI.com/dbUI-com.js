@@ -29,7 +29,7 @@
             ele.innerText = param.h;
         }
         if (param.event != null && Array.isArray(param.event) && ele != null) {
-            param.event.forEach(obj => { ele.bind(obj.key, obj.fc); });
+            param.event.forEach(obj => { ele.Bind(obj.key, obj.fc); });
         }
         if (param.attr != null && Array.isArray(param.attr) && ele != null) {
             param.attr.forEach(obj => { ele.setAttribute(obj.key, obj.value); });
@@ -80,7 +80,7 @@
             for (let ikey in proxyObject)
                 if (proxyObject.hasOwnProperty(ikey))
                     if (typeof (proxyObject[ikey]) == "object")
-                        defineProxy(proxyObject[ikey], callback, penetrate, proxyObject, ikey, original);
+                        $dbUI.defineProxy(proxyObject[ikey], callback, penetrate, proxyObject, ikey, original);
         let obj = new Proxy(proxyObject, {
             get(target, key) {
                 return callback.get.call(original, target, key, prevkey);
@@ -110,7 +110,7 @@
      * @name: 去除头尾空格
      * @param {*}
      * @return {*}
-     */    
+     */
     String.prototype.Trim = function () {
         return this.replace(/(^\s*)|(\s*$)/g, "");
     }
@@ -119,7 +119,7 @@
      * @name: 去除头部空格
      * @param {*}
      * @return {*}
-     */    
+     */
     String.prototype.TrimLeft = function () {
         return this.replace(/(^\s*)/g, "");
     }
@@ -128,9 +128,24 @@
      * @name: 去除尾部空格
      * @param {*}
      * @return {*}
-     */    
+     */
     String.prototype.TrimRight = function () {
         return this.replace(/(\s*$)/g, "");
+    }
+
+    /**
+     * @name: 绑定事件
+     * @param {*} event     事件类型
+     * @param {*} action    触发函数
+     * @param {*} recursion 逐级递归
+     * @return {*}
+     */
+    HTMLElement.prototype.Bind = function (event, action, recursion) {
+        this.addEventListener(event, action, recursion);
+        function delHandle() {
+            this.removeEventListener(event, action, recursion);
+        }
+        return { del: delHandle };
     }
 
 }(window))

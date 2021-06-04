@@ -985,6 +985,6 @@
                 parent.removeChild(ele);
             }
         }
-    }
+    } cron();
     $dbUI.cron = cron;
 }($dbUI));
