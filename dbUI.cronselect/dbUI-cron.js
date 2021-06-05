@@ -247,7 +247,7 @@
                                                 $dbUI.ctElement({
                                                     p: this, e: "label", event: [
                                                         {
-                                                            key: "click", fc: function () {
+                                                            key: "click", action: function () {
                                                                 let checkboxs = container.getElementsByTagName("input");
                                                                 let res = [];
                                                                 for (let t = 0; t < checkboxs.length; t++) {
@@ -334,7 +334,7 @@
                                 let days = $dbUI.ctElement({
                                     p: this, e: "input", c: ["criteria"],
                                     attr: [{ key: "type", value: "text" }],
-                                    event: [{ key: "change", fc: nearchange }]
+                                    event: [{ key: "change", action: nearchange }]
                                 });
                                 $dbUI.ctElement({ p: this, e: "label", t: `${Cron.remark}最近的那个工作日` });
                                 function nearchange(e) {
@@ -379,7 +379,7 @@
                                 $dbUI.ctElement({ p: this, e: "label", t: "每月最后一周的" });
                                 let select = $dbUI.ctElement({
                                     p: this, e: "select", c: ["criterias"],
-                                    event: [{ key: "change", fc: lastchange }],
+                                    event: [{ key: "change", action: lastchange }],
                                     ape: function () {
                                         $dbUI.ctElement({ p: this, e: "option", attr: [{ key: "value", value: Cron.default }], t: "不指定" });
                                         for (let t1 = 0; t1 < Cron.mapping.length; t1++) {
@@ -415,13 +415,13 @@
                                 let left = $dbUI.ctElement({
                                     p: this, e: "input", c: ["criteria"],
                                     attr: [{ key: "type", value: "text" }],
-                                    event: [{ key: "change", fc: oldchange }]
+                                    event: [{ key: "change", action: oldchange }]
                                 });
                                 $dbUI.ctElement({ p: this, e: "label", t: `${Cron.remark}到` });
                                 let right = $dbUI.ctElement({
                                     p: this, e: "input", c: ["criteria"],
                                     attr: [{ key: "type", value: "text" }],
-                                    event: [{ key: "change", fc: oldchange }]
+                                    event: [{ key: "change", action: oldchange }]
                                 });
                                 $dbUI.ctElement({ p: this, e: "label", t: `${Cron.remark}每${Cron.remark1}执行一次` });
                                 function oldchange(e) {
@@ -464,13 +464,13 @@
                                 let left = $dbUI.ctElement({
                                     p: this, e: "input", c: ["criteria"],
                                     attr: [{ key: "type", value: "text" }],
-                                    event: [{ key: "change", fc: oldchange }]
+                                    event: [{ key: "change", action: oldchange }]
                                 });
                                 $dbUI.ctElement({ p: this, e: "label", t: `${Cron.remark}开始,每` });
                                 let right = $dbUI.ctElement({
                                     p: this, e: "input", c: ["criteria"],
                                     attr: [{ key: "type", value: "text" }],
-                                    event: [{ key: "change", fc: oldchange }]
+                                    event: [{ key: "change", action: oldchange }]
                                 });
                                 $dbUI.ctElement({ p: this, e: "label", t: `${Cron.remark1}执行一次` });
                                 function oldchange(e) {
@@ -510,13 +510,13 @@
                                 let left = $dbUI.ctElement({
                                     p: this, e: "input", c: ["criteria"],
                                     attr: [{ key: "type", value: "text" }],
-                                    event: [{ key: "change", fc: oldchange }]
+                                    event: [{ key: "change", action: oldchange }]
                                 });
                                 $dbUI.ctElement({ p: this, e: "label", t: `${Cron.remark1}的${Cron.remark}` });
                                 let right = $dbUI.ctElement({
                                     p: this, e: "input", c: ["criteria"],
                                     attr: [{ key: "type", value: "text" }],
-                                    event: [{ key: "change", fc: oldchange }]
+                                    event: [{ key: "change", action: oldchange }]
                                 });
                                 $dbUI.ctElement({ p: this, e: "label", t: `执行一次` });
                                 function oldchange(e) {
@@ -584,7 +584,7 @@
                         let li = $dbUI.ctElement({
                             p: this, e: "li", t: Class.Cron[key].title, event: [
                                 {
-                                    key: "click", fc: function () {
+                                    key: "click", action: function () {
                                         let curCron = Class.Cron[key],
                                             bors = this.parentNode.children;;
                                         menuClick(curCron);
@@ -610,7 +610,7 @@
                     let label = $dbUI.ctElement({
                         p: variety, e: "label", event: [
                             {
-                                key: "click", fc: function (e) {
+                                key: "click", action: function (e) {
                                     varietyClick(e, Cron, tab);
                                 }
                             }
@@ -762,35 +762,35 @@
                                     { key: "separator", value: separator }
                                 ],
                                 event: [
-                                    { key: "click", fc: selectClick },
-                                    { key: "mousedown", fc: noselect }
+                                    { key: "click", action: selectClick },
+                                    { key: "mousedown", action: noselect }
                                 ]
                             }),
                             prevBtn = [
                                 $dbUI.ctElement({
                                     e: "li", t: "▲", event: [
-                                        { key: "mousedown", fc: Prev },
-                                        { key: "mouseup", fc: Close },
+                                        { key: "mousedown", action: Prev },
+                                        { key: "mouseup", action: Close },
                                     ]
                                 }),
                                 $dbUI.ctElement({
                                     e: "li", t: "▲", event: [
-                                        { key: "mousedown", fc: Prev },
-                                        { key: "mouseup", fc: Close },
+                                        { key: "mousedown", action: Prev },
+                                        { key: "mouseup", action: Close },
                                     ]
                                 })
                             ],
                             nextBtn = [
                                 $dbUI.ctElement({
                                     e: "li", t: "▼", event: [
-                                        { key: "mousedown", fc: Next },
-                                        { key: "mouseup", fc: Close },
+                                        { key: "mousedown", action: Next },
+                                        { key: "mouseup", action: Close },
                                     ]
                                 }),
                                 $dbUI.ctElement({
                                     e: "li", t: "▼", event: [
-                                        { key: "mousedown", fc: Next },
-                                        { key: "mouseup", fc: Close },
+                                        { key: "mousedown", action: Next },
+                                        { key: "mouseup", action: Close },
                                     ]
                                 })
                             ];
@@ -912,7 +912,7 @@
 
                                     $dbUI.ctElement({
                                         p: item, e: "li", c: [!init && rangeText == point ? "this" : ""], t: rangeText,
-                                        event: [{ key: "click", fc: SureClick }]
+                                        event: [{ key: "click", action: SureClick }]
                                     });
                                 }
 

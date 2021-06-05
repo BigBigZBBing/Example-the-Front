@@ -9,7 +9,7 @@
      * @param {*} c     class 例:['dbUI']
      * @param {*} t     innerText 
      * @param {*} h     innerHtml
-     * @param {*} event 绑定事件 例:[{key:'click',fc:function()}]
+     * @param {*} event 绑定事件 例:[{key:'click',action:function()}]
      * @param {*} attr  添加属性 例:[{key:'id',value:'test'}]
      * @param {*} ape   回调函数 this指向创建的元素
      * @returns         创建的元素
@@ -29,7 +29,7 @@
             ele.innerText = param.h;
         }
         if (param.event != null && Array.isArray(param.event) && ele != null) {
-            param.event.forEach(obj => { ele.Bind(obj.key, obj.fc); });
+            param.event.forEach(obj => { ele.Bind(obj.key, obj.action, obj.option); });
         }
         if (param.attr != null && Array.isArray(param.attr) && ele != null) {
             param.attr.forEach(obj => { ele.setAttribute(obj.key, obj.value); });
@@ -141,11 +141,45 @@
      * @return {*}
      */
     HTMLElement.prototype.Bind = function (event, action, recursion) {
-        this.addEventListener(event, action, recursion);
+        this.addEventListener(event, action, recursion || true);
         function delHandle() {
-            this.removeEventListener(event, action, recursion);
+            this.removeEventListener(event, action, recursion || true);
         }
         return { del: delHandle };
+    }
+
+    /**
+     * @name: 开关指定class
+     * @param {*} key
+     * @return {*}
+     */
+    HTMLElement.prototype.Toggle = function (key) {
+        if (this.classList.contains(key)) {
+            this.classList.remove(key);
+        }
+        else this.classList.add(key);
+    }
+
+    /**
+     * @name: 关闭指定class
+     * @param {*} key
+     * @return {*}
+     */
+    HTMLElement.prototype.RemoveClass = function (key) {
+        if (this.classList.contains(key)) {
+            this.classList.remove(key);
+        }
+    }
+
+    /**
+     * @name: 添加指定class
+     * @param {*} key
+     * @return {*}
+     */
+    HTMLElement.prototype.AddClass = function (key) {
+        if (!this.classList.contains(key)) {
+            this.classList.add(key);
+        }
     }
 
 }(window))

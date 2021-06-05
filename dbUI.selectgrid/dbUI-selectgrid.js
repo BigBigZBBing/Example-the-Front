@@ -1,120 +1,132 @@
 (function ($dbUI) {
     function selectgrid(cols, data, callback) {
-        var tempData = data;
-        var nFocus = false;
         var selectS = document.querySelectorAll(".dbUI-select");
         Array.from(selectS).forEach(item => {
+            //条件筛选出的临时数据集
+            let tempData = data;
+            //输入框是否获得焦点
+            let nFocus = false;
+            //主框根据配置适应宽度高度
             let mainWidth = item.getAttribute("width") || "180";
             let mainHeight = item.getAttribute("height") || "25";
+            //输入框根据配置适应宽度
             let inputWidth = (Number(mainWidth) - 35) + "";
+
             let viewContent = "";
-            let cursorContent = {};
+            let cursorContent = new Object();
             item.style = `width:${mainWidth}px;height:${mainHeight}px;`;
-            let input = document.createElement("input");
-            input.className = "dbUI-select-input",
-                input.type = "text",
-                input.readOnly = true,
-                input.style = `width:${inputWidth}px;`;
-            item.appendChild(input);
-            let font = document.createElement("div");
-            font.className = "dbUI-select-font";
-            item.appendChild(font);
-            let icon = document.createElement("div");
-            icon.className = "dbUI-select-btn", icon.innerText = "▾";
-            item.appendChild(icon);
-            let container = document.createElement("div");
-            container.className = "dbUI-select-container";
-            item.appendChild(container);
-            icon.addEventListener("click", function (e) {
-                if (container.classList.contains("show")) {
-                    container.classList.remove("show");
-                }
-                else container.classList.add("show");
-                input.click();
-                input.focus();
+            let input = $dbUI.ctElement({
+                p: item, e: "input", c: ["dbUI-select-input"],
+                attr: [
+                    { key: "type", value: "text" },
+                    { key: "readonly", value: "" },
+                    { key: "style", value: `width:${inputWidth}px;` },
+                ],
+                event: [
+                    {
+                        key: "keydown", action: function (e) {
+                            if (nFocus) {
+                                if (e.keyCode == 8) {
+                                    let temp = loadFilter.substring(0, loadFilter.length - 1);
+                                    filterFont(temp);
+                                } else {
+                                    let value = String.fromCharCode(e.keyCode);
+                                    if (/[0-9|A-Z|a-z]/.test(value)) {
+                                        let temp = loadFilter + value;
+                                        filterFont(temp);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
             });
-            let tableHead = document.createElement("div");
-            tableHead.className = "dbUI-select-container-content-thead";
-            container.appendChild(tableHead);
-            let content = document.createElement("div");
-            content.className = "dbUI-select-container-content";
-            content.style = `min-width:${mainWidth}px;`;
-            container.appendChild(content);
-            let help = document.createElement("div");
-            help.className = "dbUI-select-container-help";
-            container.appendChild(help);
-            let helpinput = document.createElement("input");
-            helpinput.type = "button", helpinput.value = "x";
-            help.appendChild(helpinput);
-            let helpdiv = document.createElement("div");
-            helpdiv.innerText = "⊿";
-            help.appendChild(helpdiv);
+            let font = $dbUI.ctElement({ p: item, e: "div", c: ["dbUI-select-font"] });
+            $dbUI.ctElement({
+                p: item, e: "div", c: ["dbUI-select-btn"], t: "▾",
+                event: [
+                    {
+                        key: "click", action: function () {
+                            container.Toggle("show");
+                            input.click(), input.focus();
+                        }
+                    }
+                ]
+            });
+            let container = $dbUI.ctElement({ p: item, e: "div", c: ["dbUI-select-container"] });
+            let tableHead = $dbUI.ctElement({ p: container, e: "div", c: ["dbUI-select-container-content-thead"] });
+            let content = $dbUI.ctElement({
+                p: container, e: "div", c: ["dbUI-select-container-content"]
+                , attr: [
+                    { key: "style", value: `min-width:${mainWidth}px;` },
+                ]
+            });
+            let help = $dbUI.ctElement({ p: container, e: "div", c: ["dbUI-select-container-help"] });
+            $dbUI.ctElement({
+                p: help, e: "input", c: ["dbUI-select-container-help"],
+                attr: [
+                    { key: "type", value: "button" },
+                    { key: "value", value: "x" },
+                ],
+                event: [
+                    {
+                        key: "click", action: function () {
+                            container.Toggle("show");
+                        }
+                    }
+                ]
+            });
+
             let containerDrop = false;
-            let currX = 0;
-            let currY = 0;
-            let currW = 0;
-            let currH = 0;
-            helpdiv.addEventListener("mousedown", function (e) {
-                containerDrop = true;
-                currX = e.clientX;
-                currY = e.clientY;
-                currW = content.clientWidth;
-                currH = content.clientHeight;
-            }, true);
-            document.addEventListener("mousemove", function (e) {
+            let currX, currY, currW, currH = 0;
+            let helpdiv = $dbUI.ctElement({
+                p: help, e: "div", t: "⊿",
+                event: [
+                    {
+                        key: "mousedown", action: function (e) {
+                            containerDrop = true;
+                            currX = e.clientX;
+                            currY = e.clientY;
+                            currW = content.clientWidth;
+                            currH = content.clientHeight;
+                        }
+                    }
+                ]
+            });
+            document.documentElement.Bind("mousemove", function (e) {
                 if (containerDrop) {
                     let diffX = e.clientX - currX;
                     let diffY = e.clientY - currY;
                     container.style = "";
                     content.setAttribute("style", `width:${(currW + diffX)}px;height:${(currH + diffY)}px;min-width:${mainWidth}px;`);
                 }
-            }, true);
-            document.addEventListener("mouseup", function (e) {
-                containerDrop = false;
-            }, true);
-            helpinput.addEventListener("click", function (e) {
-                if (container.classList.contains("show")) {
-                    container.classList.remove("show");
-                }
-                else container.classList.add("show");
             });
-            let table = document.createElement("table");
-            table.setAttribute("cellspacing", "0"), table.setAttribute("cellpadding", "0");
-            content.appendChild(table);
-            let thead = document.createElement("thead");
-            table.appendChild(thead);
-            let tbody = document.createElement("tbody");
-            table.appendChild(tbody);
+            document.documentElement.Bind("mouseup", function (e) {
+                containerDrop = false;
+            });
+            let table = $dbUI.ctElement({
+                p: content, e: "table",
+                attr: [
+                    { key: "cellspacing", value: "0" },
+                    { key: "cellpadding", value: "0" },
+                ]
+            });
+            let thead = $dbUI.ctElement({ p: table, e: "thead" });
+            let tbody = $dbUI.ctElement({ p: table, e: "tbody" });
             refreshGrid();
             var loadFilter = "";
-            item.addEventListener("click", function (e) { nFocus = true; }, true);
-            document.addEventListener("mousedown", function (e) {
+            item.Bind("click", function (e) { nFocus = true; });
+            document.documentElement.Bind("mousedown", function (e) {
                 if (!e.target.offsetParent
                     || !e.target.offsetParent == item
                     || !e.target.offsetParent == container) {
                     nFocus = false;
                     font.innerHTML = viewContent;
                     loadFilter = "";
-                    if (container.classList.contains("show")) {
-                        container.classList.remove("show");
-                    }
-                }
-            }, true);
-            input.addEventListener("keydown", function (e) {
-                if (nFocus) {
-                    if (e.keyCode == 8) {
-                        let temp = loadFilter.substring(0, loadFilter.length - 1);
-                        filterFont(temp);
-                    } else {
-                        let value = String.fromCharCode(e.keyCode);
-                        if (/[0-9|A-Z|a-z]/.test(value)) {
-                            let temp = loadFilter + value;
-                            filterFont(temp);
-                        }
-                    }
+                    container.RemoveClass("show");
                 }
             });
-            document.addEventListener("keydown", function (e) {
+            document.documentElement.Bind("keydown", function (e) {
                 if (nFocus) {
                     if (e.keyCode == 13) {
                         cursorContent.click();
@@ -136,7 +148,7 @@
                         }
                     }
                 }
-            }, true);
+            });
             function filterFont(temp, temp2) {
                 let col = cols.filter(x => x.key);
                 if (col.length > 0) {
@@ -151,8 +163,7 @@
                         viewContent = showView;
                         font.innerHTML = showView.substring(0, (temp2 || temp).length) + "<label>" + showView.substring((temp2 || temp).length) + "</label>";
                         if (temp === "") font.innerHTML = showView;
-                        if (!container.classList.contains("show"))
-                            container.classList.add("show");
+                        container.AddClass("show");
                     }
                 }
             }
@@ -161,27 +172,25 @@
                 tbody.innerHTML = "";
                 tableHead.innerHTML = "";
                 Array.from(cols).forEach(col => {
-                    let th = document.createElement("th");
-                    th.setAttribute("width", col.width);
-                    thead.appendChild(th);
-                    let colDiv = document.createElement("div");
-                    colDiv.className = "col", colDiv.innerText = col.name;
-                    colDiv.style = col.width ? `flex-basis:${(col.width - 1)}px;` : "flex-grow:1;";
-                    tableHead.appendChild(colDiv);
+                    $dbUI.ctElement({ p: thead, e: "th", attr: [{ key: "width", value: col.width }] });
+                    $dbUI.ctElement({
+                        p: tableHead, e: "div", c: ["col"], t: col.name, attr: [
+                            { key: "style", value: col.width ? `flex-basis:${(col.width - 1)}px;` : "flex-grow:1;" }
+                        ]
+                    });
                 });
                 let first = true;
                 Array.from(tempData).forEach(dta => {
-                    let tr = document.createElement("tr");
+                    let tr = $dbUI.ctElement({ p: tbody, e: "tr" });
                     if (first) {
-                        tr.classList.add("show");
+                        tr.AddClass("show");
                         first = false;
                         cursorContent = tr;
                     }
-                    tbody.appendChild(tr);
-                    tr.addEventListener("mouseenter", function (e) {
+                    tr.Bind("mouseenter", function (e) {
                         refreshCursor(this);
-                    }, true);
-                    tr.addEventListener("click", function (e) {
+                    });
+                    tr.Bind("click", function (e) {
                         let target = this.querySelector("td[c-key]");
                         if (target) {
                             filterFont(target.innerText);
@@ -189,27 +198,21 @@
                             font.innerHTML = viewContent;
                             loadFilter = "";
                         }
-                        if (container.classList.contains("show")) {
-                            container.classList.remove("show");
-                        }
+                        container.RemoveClass("show");
                     });
                     Array.from(cols).forEach(col => {
                         let key = col.field;
                         let isKey = col.key || false;
-                        let td = document.createElement("td");
-                        td.innerText = dta[key];
-                        tr.appendChild(td);
+                        let td = $dbUI.ctElement({ p: tr, e: "td", t: dta[key] });
                         if (isKey) td.setAttribute("c-key", col.field);
                     });
                 });
             }
             function refreshCursor(tr) {
                 Array.from(tr.parentNode.childNodes).forEach(x => {
-                    if (x.classList.contains("show")) {
-                        x.classList.remove("show");
-                    }
+                    x.RemoveClass("show");
                 });
-                tr.classList.add("show");
+                tr.AddClass("show");
                 cursorContent = tr;
             }
         });
