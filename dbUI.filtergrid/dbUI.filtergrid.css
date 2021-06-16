@@ -1,0 +1,46 @@
+.dbUI-filtergrid {
+    text-align: center;
+}
+
+.dbUI-filtergrid * {
+    outline: none;
+}
+
+.dbUI-filtergrid th,
+td {
+    padding: 6px 5px 6px 5px;
+    border: 1px solid lightgray;
+    border-bottom: 0px;
+    border-right: 0px;
+}
+
+.dbUI-filtergrid thead tr:last-child th {
+    border-bottom: 1px solid lightgray;
+}
+
+.dbUI-filtergrid thead tr th[rowspan="2"] {
+    border-bottom: 1px solid lightgray;
+}
+
+.dbUI-filtergrid tr:last-child td {
+    border-bottom: 1px solid lightgray;
+}
+
+.dbUI-filtergrid tr input {
+    height: 25px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 0 8px 0 8px;
+}
+
+.dbUI-filtergrid tr select {
+    height: 25px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 0 8px 0 8px;
+}
+
+.dbUI-filtergrid tr th:last-child,
+td:last-child {
+    border-right: 1px solid lightgray;
+}
