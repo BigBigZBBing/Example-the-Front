@@ -12,10 +12,41 @@
             let tbody = $dbUI.ctElement({ p: ele, e: "tbody" });
             Array.from(config.cols).forEach(col => {
                 $dbUI.ctElement({
-                    p: colTh, e: "th", t: col.name, attr: [
+                    p: colTh, e: "th",
+                    attr: [
+                        { key: "align", value: "center" },
                         { key: "width", value: col.width },
                         { key: "rowspan", value: col.filter ? 1 : 2 }
-                    ]
+                    ],
+                    ape: function () {
+                        $dbUI.ctElement({
+                            p: this, e: "label", c: ["title"], t: col.name,
+                            ape: function () {
+                                $dbUI.ctElement({
+                                    p: this, e: "div", c: ["orderby"], t: "▲",
+                                    attr: [
+                                        { key: "filtercol", value: col.field },
+                                        { key: "aes", value: "false" }
+                                    ],
+                                    event: [
+                                        {
+                                            key: "click", action: function (e) {
+                                                if (this.getAttribute("aes") == "true") {
+                                                    cache = cache.OrderByDescending(x => x[this.getAttribute("filtercol")]);
+                                                    this.setAttribute("aes", "false")
+                                                }
+                                                else {
+                                                    cache = cache.OrderBy(x => x[this.getAttribute("filtercol")]);
+                                                    this.setAttribute("aes", "true")
+                                                }
+                                                RefrshTbody();
+                                            }
+                                        }
+                                    ],
+                                })
+                            }
+                        });
+                    }
                 });
                 if (col.filter) {
                     var filterColumn = $dbUI.ctElement({ p: filterTh, e: "th" });
@@ -31,7 +62,7 @@
                                     let filterfield = this.getAttribute("filtercol");
                                     if (filterfield) {
                                         cache = source.filter(x => x[filterfield].indexOf(this.value) > -1);
-                                        RefrshTbody(tbody);
+                                        RefrshTbody();
                                     }
                                 }
                             }
@@ -44,7 +75,7 @@
                     }
                 }
             });
-            function RefrshTbody(tbody) {
+            function RefrshTbody() {
                 tbody.innerHTML = "";
                 Array.from(cache).forEach(row => {
                     let tr = $dbUI.ctElement({ p: tbody, e: "tr" });
@@ -57,7 +88,7 @@
                     });
                 });
             }
-            RefrshTbody(tbody);
+            RefrshTbody();
         }
     }
 }($dbUI))

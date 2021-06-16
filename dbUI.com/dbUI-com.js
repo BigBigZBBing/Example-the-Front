@@ -215,4 +215,23 @@
         else return this.sort();
     };
 
+    /**
+     * @name: 仿照C#Linq的OrderByDescending
+     * @param {*} field
+     * @return {*}
+     */
+    Array.prototype.OrderByDescending = function (field) {
+        let first = this.slice(0, 1);
+        if (first instanceof Object) {
+            return this.sort(function (obj1, obj2) {
+                let val1 = field(obj1);
+                let val2 = field(obj2);
+                if (val1 < val2) return 1;
+                else if (val1 > val2) return -1;
+                else return 0;
+            });
+        }
+        else return this.sort();
+    };
+
 }(window))

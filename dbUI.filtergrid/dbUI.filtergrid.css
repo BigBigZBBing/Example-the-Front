@@ -6,12 +6,27 @@
     outline: none;
 }
 
-.dbUI-filtergrid th,
-td {
+.dbUI-filtergrid th, td {
     padding: 6px 5px 6px 5px;
     border: 1px solid lightgray;
     border-bottom: 0px;
     border-right: 0px;
+}
+
+.dbUI-filtergrid thead .title {
+    display: block;
+    width: fit-content;
+    position: relative;
+}
+
+.dbUI-filtergrid thead .title .orderby {
+    position: absolute;
+    right: -20px;
+    top: 0;
+    color: red;
+    cursor: pointer;
+    width: 20px;
+    user-select: none;
 }
 
 .dbUI-filtergrid thead tr:last-child th {
@@ -31,6 +46,7 @@ td {
     border: 1px solid lightgray;
     border-radius: 5px;
     padding: 0 8px 0 8px;
+    width: auto;
 }
 
 .dbUI-filtergrid tr select {
@@ -38,9 +54,9 @@ td {
     border: 1px solid lightgray;
     border-radius: 5px;
     padding: 0 8px 0 8px;
+    width: 100%;
 }
 
-.dbUI-filtergrid tr th:last-child,
-td:last-child {
+.dbUI-filtergrid tr th:last-child, td:last-child {
     border-right: 1px solid lightgray;
 }
