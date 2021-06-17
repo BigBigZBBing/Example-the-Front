@@ -8,20 +8,26 @@
     <title>Document</title>
     <script src="../dbUI.com/dbUI-com.js"></script>
     <link rel="stylesheet" href="./dbUI.filtergrid.css">
+    <link rel="stylesheet" href="../dbUI.controls/dbUI.controls.css">
     <script src="./dbUI.filtergrid.js"></script>
 </head>
 
 <body>
+
+    <script src="../dbUI.controls/dbUI.controls.js"></script>
+    <script>
+        console.log($dbUI);
+    </script>
     <table class="dbUI-filtergrid" cellpadding="0" cellspacing="0" id="test1"></table>
 
     <script>
         $dbUI.filtergrid(document.getElementById("test1"), {
             cols: [
-                { name: "测试列表1", field: "col1", filter: true },
-                { name: "测试列表2", field: "col2",  width: 300 },
+                { name: "测试列表1", field: "col1", filter: true, date: true },
+                { name: "测试列表2", field: "col2", width: 300 },
                 { name: "测试列表3", field: "col3", filter: true },
                 {
-                    name: "测试列表4", field: "col4",  width: 200, filter: true, select: [
+                    name: "测试列表4", field: "col4", width: 200, filter: true, select: [
                         { key: "请选择", value: "" },
                         { key: "否", value: "0" },
                         { key: "是", value: "1" }

@@ -19,14 +19,42 @@
     position: relative;
 }
 
-.dbUI-filtergrid thead .title .orderby {
+.dbUI-filtergrid thead .title .asc {
     position: absolute;
     right: -20px;
     top: 0;
-    color: red;
+    color: lightgray;
     cursor: pointer;
-    width: 20px;
+    width: 15px;
+    height: 10px;
+    font-size: 12px;
     user-select: none;
+    line-height: 8px;
+}
+
+.dbUI-filtergrid thead .title .desc {
+    position: absolute;
+    right: -20px;
+    bottom: 0;
+    color: lightgray;
+    cursor: pointer;
+    width: 15px;
+    height: 10px;
+    font-size: 12px;
+    user-select: none;
+    line-height: 8px;
+}
+
+.dbUI-filtergrid thead .title .this {
+    color: rgb(156, 156, 156);
+}
+
+.dbUI-filtergrid thead .cnf-filter {
+    border: 1px solid lightgray;
+    width: fit-content;
+    width: 20px;
+    cursor: pointer;
+    padding-right: 3px;
 }
 
 .dbUI-filtergrid thead tr:last-child th {
@@ -42,7 +70,7 @@
 }
 
 .dbUI-filtergrid tr input {
-    height: 25px;
+    height: 30px;
     border: 1px solid lightgray;
     border-radius: 5px;
     padding: 0 8px 0 8px;
@@ -50,7 +78,7 @@
 }
 
 .dbUI-filtergrid tr select {
-    height: 25px;
+    height: 30px;
     border: 1px solid lightgray;
     border-radius: 5px;
     padding: 0 8px 0 8px;
@@ -59,4 +87,23 @@
 
 .dbUI-filtergrid tr th:last-child, td:last-child {
     border-right: 1px solid lightgray;
+}
+
+.dbUI-filter-console {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 300px;
+    box-shadow: 0 0 3px 3px lightgray;
+    background-color: white;
+    user-select: none;
+}
+
+.dbUI-filter-console-col {
+    width: 295px;
+    border: 1px solid lightgray;
+    height: 40px;
+    border-radius: 5px;
+    margin: 3px 2px;
 }

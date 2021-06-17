@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./dbUI.controls.css">
+    <script src="../dbUI.com/dbUI-com.js"></script>
+</head>
+
+<body>
+    <div class="dbUI-item">
+        <div class="dbUI-panel">
+            <div class="dbUI-panel-item this">
+                <!-- <label class="dbUI-panel-title"><i></i>表单</label> -->
+                <span class="dbUI-panel-title">基础控件</span>
+                <div class="dbUI-panel-content">
+                    <form action="" class="dbUI-form">
+                        <div class="form-item-1">
+                            <label class="form-label">输入框</label>
+                            <div class="form-content">
+                                <input class="dbUI-input" type="text" autocomplete="auto" placeholder="请输入文本">
+                                <Autocomplete id="auto">
+                                    <child>内容1</child>
+                                    <child>内容2</child>
+                                    <child>内容3</child>
+                                    <child>内容4</child>
+                                    <child>内容5</child>
+                                    <child>内容6</child>
+                                    <child>内容7</child>
+                                    <child>内容8</child>
+                                </Autocomplete>
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">密码框</label>
+                            <div class="form-content">
+                                <input class="dbUI-input" type="password" placeholder="请输入密码" placeholder="请输入密码">
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">选择框</label>
+                            <div class="form-content">
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">选择框带搜索</label>
+                            <div class="form-content">
+                                <select id="select1" type="single" search="true" class="dbUI-select" placeholder="请选择">
+                                    <option value="">全部</option>
+                                    <option value="上海">上海</option>
+                                    <option value="北京">北京</option>
+                                    <option value="深圳">深圳</option>
+                                    <option value="苏州">苏州</option>
+                                    <option value="浙江">浙江</option>
+                                    <option value="杭州">杭州</option>
+                                    <option value="安徽">安徽</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-item-2">
+                            <label class="form-label">多选框带搜索</label>
+                            <div class="form-content">
+                                <select id="select1" type="multiple" search="true" class="dbUI-select"
+                                    placeholder="请选择">
+                                    <option value="">全部</option>
+                                    <option value="上海">上海</option>
+                                    <option value="北京">北京</option>
+                                    <option value="深圳">深圳</option>
+                                    <option value="苏州">苏州</option>
+                                    <option value="浙江">浙江</option>
+                                    <option value="杭州">杭州</option>
+                                    <option value="安徽">安徽</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">文本域</label>
+                            <div class="form-content">
+                                <textarea class="dbUI-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">多选块</label>
+                            <div class="form-content">
+                                <div class="dbUI-group" id="test1">
+                                    <!-- <input class="dbUI-block" type="checkbox" text="第一项">
+                                    <input class="dbUI-block" type="checkbox" text="第二项">
+                                    <input class="dbUI-block" type="checkbox" text="第三项"> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">连选块</label>
+                            <div class="form-content">
+                                <div class="dbUI-group-line" id="test2">
+                                    <!-- <input class="dbUI-block" type="checkbox" text="第一项">
+                                    <input class="dbUI-block" type="checkbox" text="第二项">
+                                    <input class="dbUI-block" type="checkbox" text="第三项"> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">复选框</label>
+                            <div class="form-content">
+                                <input class="dbUI-checkbox" type="checkbox" label="复选按钮">
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">单选框</label>
+                            <div class="form-content">
+                                <input class="dbUI-radio" type="radio" name="radio1" label="单选按钮">
+                                <input class="dbUI-radio" type="radio" name="radio1" label="单选按钮">
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">滑块</label>
+                            <div class="form-content">
+                                <input class="dbUI-slider" type="checkbox">
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">滑动条</label>
+                            <div class="form-content">
+                                <div class="dbUI-slide" init="0">
+                                    <div>
+                                        <span tooltip="0" tooltip-for="tooltip1"></span>
+                                        <span tooltip-content="tooltip1" hidden></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">Tooltip</label>
+                            <div class="form-content">
+                                <div tooltip="" tooltip-for="tooltip3">你好啊</div>
+                                <span tooltip-content="tooltip3" hidden>你不好</span>
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">日期选择器</label>
+                            <div class="form-content">
+                                <input class="dbUI-date" format="datetime" placeholder="年-月-日" readonly="readonly"
+                                    type="text">
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">内嵌内容弹出框</label>
+                            <div class="form-content">
+                                <button id="nesting" type="button" class="dbUI-btn dbUI-btn-normal"
+                                    style="width: 150px;">Nesting弹窗</button>
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">屋顶弹出框</label>
+                            <div class="form-content">
+                                <button id="roof" type="button" class="dbUI-btn dbUI-btn-normal"
+                                    style="width: 150px;">roof弹窗</button>
+                            </div>
+                        </div>
+                        <div class="form-item-1">
+                            <label class="form-label">提示弹出窗</label>
+                            <div class="form-content">
+                                <button id="hint" type="button" class="dbUI-btn dbUI-btn-normal"
+                                    style="width: 150px;">hint弹窗</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./dbUI.controls.js"></script>
+</body>
+
+</html>

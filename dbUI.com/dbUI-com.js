@@ -20,7 +20,7 @@
             var ele = document.createElement(param.e);
         }
         if (param.c != null && param.c != "" && Array.isArray(param.c) && ele != null) {
-            param.c.forEach(obj => { ele.classList.add(obj); });
+            param.c.forEach(obj => { if (obj) ele.classList.add(obj); });
         }
         if (param.t != null && param.t != "" && ele != null) {
             ele.innerText = param.t;
@@ -29,10 +29,10 @@
             ele.innerText = param.h;
         }
         if (param.event != null && Array.isArray(param.event) && ele != null) {
-            param.event.forEach(obj => { ele.Bind(obj.key, obj.action, obj.option); });
+            param.event.forEach(obj => { if (obj) ele.Bind(obj.key, obj.action, obj.option); });
         }
         if (param.attr != null && Array.isArray(param.attr) && ele != null) {
-            param.attr.forEach(obj => { ele.setAttribute(obj.key, obj.value); });
+            param.attr.forEach(obj => { if (obj) ele.setAttribute(obj.key, obj.value); });
         }
         if (param.p != null && param.p != "" && ele != null) {
             param.p.appendChild(ele);
@@ -183,6 +183,24 @@
     }
 
     /**
+     * @name: 获取上一个兄弟元素
+     * @param {*}
+     * @return {*}
+     */
+    HTMLElement.prototype.Prev = function () {
+        return this.previousElementSibling;
+    }
+
+    /**
+     * @name: 获取下一个兄弟元素
+     * @param {*}
+     * @return {*}
+     */
+    HTMLElement.prototype.Next = function () {
+        return this.nextElementSibling;
+    }
+
+    /**
      * @name: 仿照C#Linq的Select
      * @param {*} func
      * @return {*}
@@ -233,5 +251,35 @@
         }
         else return this.sort();
     };
+
+    /**
+     * @name: 删除子级元素
+     * @param {*} element
+     * @return {*}
+     */
+    HTMLElement.prototype.RemoveChilds = function (element) {
+        if (element) {
+            let temp = this.getElementsByTagName(element);
+            for (let i = temp.length - 1; i >= 0; i--) {
+                if (temp[i].tagName.toLowerCase() == element.toLowerCase()) {
+                    temp[i].remove();
+                }
+            }
+            return;
+        }
+        this.innerHTML = "";
+    };
+
+    /**
+     * @name: 给时间增加天数
+     * @param {*} days
+     * @return {*}
+     */
+    Date.prototype.AddDays = function (days) {
+        var d = new Date(this);
+        d.setDate(d.getDate() + days);
+        var m = d.getMonth() + 1;
+        return new Date(d.getFullYear() + '-' + m + '-' + d.getDate());
+    }
 
 }(window))

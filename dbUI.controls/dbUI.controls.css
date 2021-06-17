@@ -1,0 +1,1734 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: '等线';
+    font-size: 16px;
+}
+
+*::after {
+    margin: 0;
+    padding: 0;
+    font-family: '等线';
+    font-size: 16px;
+}
+
+*::before {
+    margin: 0;
+    padding: 0;
+    font-family: '等线';
+    font-size: 16px;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    cursor: default;
+    background: #fff;
+    position: relative;
+}
+
+.dbUI-btn {
+    margin: 0;
+    padding: 0;
+    width: 80px;
+    height: 40px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    outline: 0;
+    cursor: pointer;
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, .2);
+    color: #fff;
+    font-family: inherit;
+    user-select: none;
+    overflow: hidden
+}
+
+.dbUI-btn-normal {
+    background-image: linear-gradient(#7dc6fa, #096cb8)
+}
+
+.dbUI-btn-normal:hover {
+    background-image: linear-gradient(#7dc6fa, #096cb8)
+}
+
+.dbUI-btn-normal:active {
+    background-image: linear-gradient(#096cb8, #7dc6fa)
+}
+
+.dbUI-btn-retro {
+    background-image: linear-gradient(#6fc288, #238834)
+}
+
+.dbUI-btn-retro:hover {
+    background-image: linear-gradient(#6fc288, #238834)
+}
+
+.dbUI-btn-retro:active {
+    background-image: linear-gradient(#238834, #6fc288)
+}
+
+.dbUI-btn-warning {
+    background-image: linear-gradient(#ffa8a8, #bb1d1d)
+}
+
+.dbUI-btn-warning:hover {
+    background-image: linear-gradient(#ffa8a8, #bb1d1d)
+}
+
+.dbUI-btn-warning:active {
+    background-image: linear-gradient(#bb1d1d, #ffa8a8)
+}
+
+.dbUI-btn-destroy {
+    background-image: linear-gradient(#d1caca, #d1caca)
+}
+
+.dbUI-btn-destroy:hover {
+    background-image: linear-gradient(#d1caca, #d1caca)
+}
+
+.dbUI-btn-destroy:active {
+    background-image: linear-gradient(#d1caca, #d1caca)
+}
+
+.dbUI-line {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #e6e3e3;
+    height: 3px;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, .2, .2);
+    user-select: none;
+    position: relative;
+}
+
+.dbUI-line[tab-title] {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.dbUI-line[tab-title]::before {
+    display: inline-block;
+    position: absolute;
+    content: attr(tab-title);
+    font-size: 20px;
+    background: white;
+    margin-left: 30px;
+    padding: 3px 10px;
+    width: auto;
+    height: 20px;
+    top: -11px;
+    left: 0px;
+    border-left: 3px solid #e6e3e3;
+    border-right: 3px solid #e6e3e3;
+}
+
+.dbUI-tabs {
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    width: 100%;
+    position: relative;
+    list-style-type: none;
+    border-bottom: 1px solid #d3d3d3;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    display: inline-flex;
+}
+
+.dbUI-tabs-btn li {
+    padding-right: 40px
+}
+
+.dbUI-tabs-li {
+    width: 70px;
+    height: 50px;
+    border-radius: 3px 3px 0 0;
+    text-align: left;
+    line-height: 50px;
+    display: inline-block;
+    border: 1px solid transparent;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow: hidden;
+    width: auto
+}
+
+.dbUI-tabs-li.this {
+    height: 47px;
+    line-height: 47px;
+    border-top: 1px solid #d3d3d3;
+    border-left: 1px solid #d3d3d3;
+    border-right: 1px solid #d3d3d3;
+    border-bottom: 3px solid #fff;
+    box-shadow: 3px 0 0 0 rgba(0, 0, 0, .2);
+}
+
+.dbUI-tabs-btn li i {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    background-image: url(icon/close.png);
+    background-position: center center;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+    margin-left: 7px;
+    position: absolute;
+    top: 14px;
+}
+
+.dbUI-tabs-btn li i:hover {
+    /* background-image: url(icon/close_hover.png); */
+    background-color: lightcoral;
+    cursor: pointer;
+}
+
+.dbUI-tabs-simple {
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    overflow: hidden;
+}
+
+.dbUI-tabs-li-simple {
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    display: inline-block;
+    user-select: none;
+    border: 0 solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.dbUI-tabs-li-simple::after {
+    position: absolute;
+    content: " ";
+    top: 0;
+    left: 100%;
+    height: 48px;
+    line-height: 48px;
+    width: 0;
+    transition: all .2s linear;
+    border-bottom: 3px solid lightskyblue;
+}
+
+.dbUI-tabs-li-simple.this::after {
+    position: absolute;
+    content: " ";
+    top: 0;
+    left: 0;
+    height: 48px;
+    line-height: 48px;
+    width: 100%;
+    border-bottom: 3px solid lightskyblue;
+}
+
+.dbUI-tabs-li-simple.this {
+    position: relative;
+    color: rgb(45, 173, 253);
+}
+
+.dbUI-tabs-li-simple.this+.dbUI-tabs-li-simple::after {
+    left: 0;
+}
+
+.dbUI-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+}
+
+.dbUI-tag {
+    height: 60px;
+    border-left: 5px solid #d3d3d3;
+    border-top: 1px solid #d3d3d3;
+    border-bottom: 1x solid #d3d3d3;
+    border-right: 5px solid #d3d3d3;
+    box-shadow: 1px 3px 5px 1px rgba(211, 211, 211, 1);
+    overflow: hidden;
+}
+
+.dbUI-panel {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dbUI-panel .dbUI-panel-item {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #e7e6e6;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 1px 3px 5px 1px rgba(211, 211, 211, 1);
+    transition: all .3s;
+}
+
+.dbUI-panel .dbUI-panel-item:first-child {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px
+}
+
+.dbUI-panel .dbUI-panel-item span[class~=dbUI-panel-title] {
+    display: block;
+    font-size: 20px;
+    width: 100%-40px;
+    border-bottom: 1px solid lightgray;
+    padding: 10px 0;
+    margin: 0 20px;
+    padding-left: 10px;
+}
+
+.dbUI-panel .dbUI-panel-item label[class~=dbUI-panel-title] {
+    height: 40px;
+    line-height: 40px;
+    display: flex;
+    background-color: #e7e6e6;
+    position: relative;
+    cursor: pointer;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.dbUI-panel .dbUI-panel-item label[class~=dbUI-panel-title] i:first-child {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(icon/left.png);
+    background-position: center center;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    transform: rotate(-180deg);
+    position: absolute;
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    padding-left: 15px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.dbUI-panel .dbUI-panel-item.this>label[class~=dbUI-panel-title] i:first-child {
+    background-image: url(icon/left.png);
+    transform: rotate(-90deg);
+}
+
+.dbUI-panel .dbUI-panel-item .dbUI-panel-content {
+    height: auto;
+    padding: 15px 10px;
+    user-select: none;
+}
+
+.dbUI-panel-item.this {
+    height: auto;
+    overflow: visible;
+}
+
+.dbUI-label {
+    display: inline-flex;
+    width: 80px;
+    height: 40px;
+    align-items: center;
+}
+
+.dbUI-table .datatable {
+    width: 100%;
+    max-height: 500px;
+    border-collapse: collapse;
+    box-shadow: 1px 3px 5px 1px rgba(211, 211, 211, 1)
+}
+
+.dbUI-table .datatable tr {
+    box-sizing: border-box
+}
+
+.dbUI-table .datatable tr:nth-child(2n):hover {
+    background-color: #fddfdf;
+    box-sizing: border-box;
+    transition: all .2s
+}
+
+.dbUI-table .datatable tr:nth-child(2n-1):hover {
+    background-color: #dfeeff;
+    box-sizing: border-box;
+    transition: all .2s
+}
+
+.dbUI-table .datatable tr th {
+    height: 50px;
+    max-height: 50px;
+    border: 1px solid #e7e6e6;
+    background-color: #e7e6e6
+}
+
+.dbUI-table .datatable tr td {
+    text-align: center;
+    height: 50px;
+    max-height: 50px;
+    border: 1px solid #e7e6e6;
+    border-top: 0
+}
+
+.dbUI-table .datapager {
+    height: 40px;
+}
+
+.dbUI-table .datapager .tabpager {
+    margin: 10px 0;
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.dbUI-table .datapager .tabpager .count {
+    width: auto;
+    height: 30px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.dbUI-table .datapager .tabpager .count span {
+    color: black;
+}
+
+.dbUI-table .datapager .tabpager .pagination {
+    margin: 5px;
+}
+
+.dbUI-table .datapager .tabpager .limit {
+    margin: 5px;
+}
+
+.dbUI-table .datapager .tabpager .pagination ul {
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+    font-weight: 700;
+}
+
+.dbUI-table .datapager .tabpager .pagination ul li {
+    box-shadow: 0 0 3px 2px lightblue;
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: black;
+}
+
+.dbUI-table .datapager .tabpager .pagination ul li:hover {
+    box-shadow: 0 0 3px 2px lightblue inset;
+    color: lightskyblue;
+}
+
+.dbUI-table .datapager .tabpager .pagination button {
+    background: white;
+    box-shadow: 0 0 3px 2px lightblue;
+    border: 0;
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: inline-block;
+    outline: none;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.dbUI-table .datapager .tabpager .pagination button:hover {
+    box-shadow: 0 0 3px 2px lightblue inset;
+    color: lightskyblue;
+}
+
+.dbUI-form [class*='form-item'] {
+    display: flex;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+    float: left;
+    height: 80px;
+    padding: 10px;
+    border: 0;
+    line-height: 30px;
+}
+
+.dbUI-form [class*='form-item'] .form-content {
+    width: auto;
+    display: inline-block;
+    position: relative;
+}
+
+.dbUI-form [class*='form-item'] .form-label {
+    display: inline-block;
+    height: 50px;
+    margin: 0 20px;
+    text-align: center;
+    width: 80px;
+    white-space: nowrap;
+    text-overflow: clip;
+    overflow: hidden;
+}
+
+.dbUI-form:after {
+    display: block;
+    content: "\20";
+    clear: both;
+    height: auto;
+}
+
+@media only screen and (min-width: 768.1px) {
+    .dbUI-form .form-item-1 {
+        width: 25%;
+    }
+    .dbUI-form .form-item-2 {
+        width: 50%;
+    }
+    .dbUI-form .form-item-3 {
+        width: 75%;
+    }
+    .dbUI-form .form-item-4 {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .dbUI-form .form-item-1 {
+        width: 25%;
+    }
+    .dbUI-form .form-item-2 {
+        width: 50%;
+    }
+    .dbUI-form .form-item-3 {
+        width: 75%;
+    }
+    .dbUI-form .form-item-4 {
+        width: 100%;
+    }
+}
+
+.dbUI-input {
+    width: auto;
+    height: auto;
+    position: relative;
+}
+
+.dbUI-input input {
+    width: 180px;
+    height: 30px;
+    border: 1.3px solid lightgray;
+    border-radius: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+    transition: all 0.5s;
+}
+
+.dbUI-input input:focus {
+    border: 1.3px solid rgb(91, 175, 253);
+    transition: all 0.5s;
+}
+
+.dbUI-input-dl {
+    position: absolute;
+    border: 1px solid lightgray;
+    height: auto;
+    min-height: 10px;
+    max-height: 200px;
+    width: 100%;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 2px;
+    top: 35px;
+    box-shadow: 2px 2px 0 0 rgba(211, 211, 211, 0.3);
+    z-index: 100;
+    visibility: hidden;
+}
+
+.dbUI-input-dl::-webkit-scrollbar {
+    width: 4px;
+}
+
+.dbUI-input-dl::-webkit-scrollbar-thumb {
+    background-color: rgb(241, 207, 207);
+}
+
+.dbUI-input-dl.show {
+    visibility: visible;
+}
+
+.dbUI-input-dl dd {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.dbUI-input-dl dd.this {
+    background-color: rgb(68, 182, 253);
+    border: 0;
+}
+
+.dbUI-input-dl dd:hover {
+    background-color: rgb(132, 208, 255);
+    border: 0;
+}
+
+.dbUI-password {
+    width: auto;
+    height: auto;
+    position: relative;
+}
+
+.dbUI-password input {
+    width: 160px;
+    height: 30px;
+    border: 1.3px solid lightgray;
+    border-radius: 3px;
+    padding-left: 10px;
+    padding-right: 30px;
+    outline: none;
+    transition: all 0.8s;
+}
+
+.dbUI-password input:focus {
+    border: 1.3px solid rgb(91, 175, 253);
+    transition: all 0.8s;
+}
+
+.dbUI-password .dbUI-password-i {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-image: url(icon/passwordX.png);
+    background-position: center center;
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    cursor: pointer;
+}
+
+.dbUI-password .dbUI-password-i.show {
+    background-image: url(icon/passwordS.png);
+    cursor: pointer;
+}
+
+.dbUI-select {
+    width: auto;
+    height: auto;
+    position: relative;
+    cursor: pointer;
+}
+
+.dbUI-select .dbUI-select2 .select2-input {
+    position: relative;
+    width: 170px;
+    height: 100%;
+    min-height: 30px;
+    border: 1.3px solid lightgray;
+    border-radius: 3px;
+    padding-left: 10px;
+    padding-right: 20px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.8s;
+}
+
+.dbUI-select .dbUI-select2 .select2-div {
+    position: relative;
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    width: 170px;
+    height: auto;
+    min-height: 22px;
+    border: 1.3px solid lightgray;
+    border-radius: 3px;
+    padding: 4px 0;
+    padding-left: 10px;
+    padding-right: 20px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.8s;
+}
+
+.dbUI-select .dbUI-select2 .select2-div .select2-value {
+    position: relative;
+    display: inline-block;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    box-shadow: 0 0 3px 1px lightgray;
+    width: auto;
+    height: 25px;
+    padding: 0 5px;
+    margin: 0 3px;
+}
+
+.dbUI-select .dbUI-select2 .select2-div .select2-value:hover {
+    color: white;
+}
+
+.dbUI-select .dbUI-select2 .select2-div .select2-value:hover::before {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: lightgray;
+    font-size: 30px;
+    content: '×';
+}
+
+.dbUI-select .dbUI-select2 input:focus {
+    border: 1.3px solid rgb(91, 175, 253);
+    transition: all 0.8s;
+}
+
+.dbUI-select .dbUI-select2 {
+    position: relative;
+    width: auto;
+    height: auto;
+    min-height: 30px;
+}
+
+.dbUI-select .dbUI-select-i {
+    pointer-events: none;
+    display: inline-block;
+    width: 12px;
+    height: 8px;
+    background-image: url(icon/select.png);
+    background-position: center center;
+    background-size: 12px 8px;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    cursor: pointer;
+    transform: rotate(-90deg) translateX(25%);
+    transition: all 0.3s;
+}
+
+.dbUI-select.show .dbUI-select-i {
+    transform: rotate(-180deg);
+    transition: all 0.3s;
+}
+
+.dbUI-select .dbUI-select-dl .search {
+    position: relative;
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.dbUI-select .dbUI-select-dl.show .search {
+    display: flex;
+}
+
+.dbUI-select .dbUI-select-dl .search .search-input {
+    margin: 3px 3px;
+    width: auto;
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-padding-left: 30px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+.dbUI-select-dl {
+    position: absolute;
+    border: 1px solid lightgray;
+    height: auto;
+    min-height: 10px;
+    max-height: 200px;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: white;
+    border-radius: 2px;
+    top: 130%;
+    box-shadow: 2px 2px 0 0 rgba(211, 211, 211, 0.3);
+    z-index: 100;
+    visibility: hidden;
+}
+
+.dbUI-select-dl::-webkit-scrollbar {
+    width: 4px;
+}
+
+.dbUI-select-dl::-webkit-scrollbar-thumb {
+    background-color: lightgrey;
+}
+
+.dbUI-select-dl.show {
+    top: 100%;
+    transition: all 0.3s;
+    visibility: visible;
+}
+
+.dbUI-select-dl dd {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.dbUI-select-dl dd[value=""] {
+    color: lightgrey;
+}
+
+.dbUI-select-dl dd[selected=""] {
+    background-color: rgb(132, 208, 255);
+}
+
+.dbUI-select-dl dd:hover {
+    background-color: rgb(132, 208, 255);
+    border: 0;
+}
+
+.dbUI-textarea {
+    resize: vertical;
+    width: 100%;
+    min-height: 50px;
+    border: 1.3px solid lightgray;
+    border-radius: 3px;
+    padding: 5px 10px;
+    outline: none;
+    transition: border 0.8s;
+}
+
+.dbUI-textarea:focus {
+    border: 1.3px solid rgb(91, 175, 253);
+    transition: border 0.8s;
+}
+
+.dbUI-group .dbUI-block {
+    position: relative;
+    width: max-content;
+    height: 30px;
+    border: 2px solid lightgray;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.dbUI-group .dbUI-block.this {
+    color: lightskyblue;
+    border: 2px solid lightskyblue;
+    background-color: rgba(211, 211, 211, 0.3);
+}
+
+.dbUI-group-line .dbUI-block {
+    position: relative;
+    width: max-content;
+    height: 30px;
+    border-top: 2px solid lightgray;
+    border-left: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    padding: 0 10px;
+    float: left;
+}
+
+.dbUI-group-line .dbUI-block+.dbUI-block {
+    border-top: 2px solid lightgray;
+    border-left: 0;
+    border-bottom: 2px solid lightgray;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.dbUI-group-line .dbUI-block+.dbUI-block:last-child {
+    border-top: 2px solid lightgray;
+    border-right: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.dbUI-group-line .dbUI-block.this {
+    color: lightskyblue;
+    border-top: 2px solid lightskyblue;
+    border-left: 2px solid lightskyblue;
+    border-bottom: 2px solid lightskyblue;
+    background-color: rgba(211, 211, 211, 0.3);
+}
+
+.dbUI-group-line .dbUI-block+.dbUI-block.this {
+    color: lightskyblue;
+    border-top: 2px solid lightskyblue;
+    border-bottom: 2px solid lightskyblue;
+    border-left: 0;
+    border-right: 0;
+    background-color: rgba(211, 211, 211, 0.3);
+}
+
+.dbUI-group-line .dbUI-block+.dbUI-block:last-child.this {
+    color: lightskyblue;
+    border-left: 0;
+    border-top: 2px solid lightskyblue;
+    border-right: 2px solid lightskyblue;
+    border-bottom: 2px solid lightskyblue;
+    background-color: rgba(211, 211, 211, 0.3);
+}
+
+.dbUI-group .dbUI-block.this::after {
+    position: absolute;
+    content: " ";
+    width: 12px;
+    height: 12px;
+    background-image: url(icon/check.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 12px 12px;
+    top: 18px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 6px;
+    border: 0;
+}
+
+.dbUI-group-line .dbUI-block.this::after {
+    position: absolute;
+    content: " ";
+    width: 12px;
+    height: 12px;
+    background-image: url(icon/check.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 12px 12px;
+    top: 18px;
+    border-radius: 5px;
+    border: 0;
+}
+
+.dbUI-block input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+.dbUI-checkbox label {
+    cursor: pointer;
+    position: relative;
+}
+
+.dbUI-checkbox label input {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    margin-right: 7px;
+    vertical-align: text-top;
+}
+
+.dbUI-checkbox label input+span {
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 0;
+    left: 0;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 3px 1px lightgray;
+}
+
+.dbUI-checkbox label input:checked+span {
+    box-shadow: 0 0 3px 1px lightskyblue;
+}
+
+.dbUI-checkbox label input:checked+span+font {
+    color: lightskyblue;
+}
+
+.dbUI-checkbox label input+span::before {
+    display: flex;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    justify-content: center;
+    align-items: center;
+    content: "\2714";
+    font-size: auto;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: color .3s;
+}
+
+.dbUI-checkbox label input:checked+span::before {
+    color: lightskyblue;
+    transition: color .3s;
+}
+
+.dbUI-radio {
+    margin: 0 5px;
+}
+
+.dbUI-radio label {
+    cursor: pointer;
+    position: relative;
+}
+
+.dbUI-radio input {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    margin-right: 7px;
+    vertical-align: text-top;
+}
+
+.dbUI-radio input+span {
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 0;
+    left: 0;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 3px 1px lightgray;
+}
+
+.dbUI-radio input:checked+span {
+    box-shadow: 0 0 3px 1px lightskyblue;
+}
+
+.dbUI-radio input:checked+span+font {
+    color: lightskyblue;
+}
+
+.dbUI-radio input+span::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    content: "";
+    border-radius: 15px;
+    background: white;
+    box-sizing: border-box;
+    border: 4px white solid;
+    cursor: pointer;
+    transition: background .3s;
+}
+
+.dbUI-radio input:checked+span::before {
+    background: lightskyblue;
+    transition: background .3s;
+}
+
+.dbUI-slide {
+    height: 5px;
+    border: 0;
+    background: lightgray;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 0 3px 1px lightgray;
+    pointer-events: none;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.dbUI-slide div {
+    height: 5px;
+    background: lightskyblue;
+    box-shadow: 0 0 3px 1px lightskyblue;
+    border-radius: 10px;
+    width: 50%;
+    position: relative;
+    text-align: right;
+}
+
+.dbUI-slide div span.this {
+    box-shadow: 0 0 3px 2px lightgray;
+}
+
+.dbUI-slide div span:first-child {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    box-shadow: 0 0 3px 2px lightskyblue;
+    border-radius: 15px;
+    background: white;
+    top: -5px;
+    margin-left: -7px;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+.dbUI-tooltip-bottom {
+    display: flex;
+    background: #262626;
+    color: white;
+    font-weight: bold;
+    border: 0;
+    width: auto;
+    min-width: 10px;
+    height: 30px;
+    border-radius: 7px;
+    text-align: center;
+    position: fixed;
+    padding: 0 10px;
+    box-shadow: 0 0 3px 1px lightgrey;
+    align-items: center;
+}
+
+.dbUI-tooltip-bottom::before {
+    display: block;
+    position: absolute;
+    content: " ";
+    width: 0;
+    height: 0;
+    top: 28px;
+    left: 50%;
+    margin-left: -10px;
+    border-top: 10px solid #262626;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid transparent;
+}
+
+.dbUI-date {
+    position: relative;
+}
+
+.dbUI-date input {
+    width: 160px;
+    height: 30px;
+    border: 1.3px solid lightgray;
+    border-radius: 3px;
+    padding-left: 10px;
+    padding-right: 30px;
+    outline: none;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.dbUI-date .dbUI-calendar {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-image: url(icon/calendar.png);
+    background-position: center center;
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    cursor: pointer;
+    pointer-events: none;
+}
+
+.dbUI-date input:focus {
+    border: 1.3px solid rgb(91, 175, 253);
+    transition: all 0.5s;
+}
+
+.dbUI-date .dbUI-datepicker {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 300px;
+    height: auto;
+    border: 1px solid lightgray;
+    box-shadow: 1px 1px 3px 1px lightgrey;
+    z-index: 100;
+    background: white;
+    visibility: hidden;
+}
+
+.dbUI-date .dbUI-datepicker.show {
+    top: 35px;
+    transition: top 0.3s;
+    visibility: visible;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .prev-y {
+    display: inline-block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-image: url(icon/lefty.png);
+    background-position: center center;
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    top: 11px;
+    left: 20px;
+    cursor: pointer;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .prev-y:hover {
+    opacity: 0.5;
+    box-shadow: 0 0 3px 2px lightgray;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .prev-y:active {
+    opacity: 0.5;
+    box-shadow: 0 0 3px 2px lightgray inset;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .prev-m {
+    display: inline-block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-image: url(icon/left.png);
+    background-position: center center;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    top: 10px;
+    left: 50px;
+    cursor: pointer;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .prev-m:hover {
+    opacity: 0.5;
+    box-shadow: 0 0 3px 2px lightgray;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .prev-m:active {
+    opacity: 0.5;
+    box-shadow: 0 0 3px 2px lightgray inset;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .next-y {
+    display: inline-block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-image: url(icon/lefty.png);
+    background-position: center center;
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    transform: rotate(180deg);
+    top: 11px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .next-y:hover {
+    opacity: 0.5;
+    box-shadow: 0 0 3px 2px lightgray;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .next-y:active {
+    opacity: 0.5;
+    box-shadow: 0 0 3px 2px lightgray inset;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .next-m {
+    display: inline-block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-image: url(icon/left.png);
+    background-position: center center;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    transform: rotate(180deg);
+    top: 10px;
+    right: 50px;
+    cursor: pointer;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .next-m:hover {
+    opacity: 0.5;
+    box-shadow: 0 0 3px 2px lightgray;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .next-m:active {
+    opacity: 0.5;
+    box-shadow: 0 0 3px 2px lightgray inset;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .yymm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .yymm .yy {
+    cursor: pointer;
+    width: auto;
+    float: left;
+    padding: 0px 5px;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .yymm .yy:hover {
+    box-shadow: 0 0 3px 2px lightgray;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .yymm .yy:active {
+    box-shadow: 0 0 3px 2px lightgray inset;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .yymm .mm {
+    cursor: pointer;
+    width: auto;
+    float: left;
+    padding: 0px 5px;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .yymm .mm:hover {
+    box-shadow: 0 0 3px 2px lightgray;
+}
+
+.dbUI-date .dbUI-datepicker .date-header .yymm .mm:active {
+    box-shadow: 0 0 3px 2px lightgray inset;
+}
+
+.dbUI-date .dbUI-datepicker .date-header {
+    height: 30px;
+    padding: 5px 80px;
+    position: relative;
+}
+
+.dbUI-date .dbUI-datepicker .date-body {
+    height: 235px;
+    padding: 5px;
+    position: relative;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendarhead {
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 3px;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendaryear {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: white;
+    top: 0;
+    left: 0;
+    border-spacing: 10px 30px;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendaryear td {
+    width: 25%;
+    text-align: center;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendaryear td:hover {
+    box-shadow: 0 0 3px 2px lightgray;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendaryear td:active {
+    box-shadow: 0 0 3px 2px lightgray inset;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendaryear td.this {
+    box-shadow: 0 0 3px 2px lightskyblue inset;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendarmonth {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: white;
+    top: 0;
+    left: 0;
+    border-spacing: 10px 30px;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendarmonth td {
+    width: 25%;
+    text-align: center;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendarmonth td:hover {
+    box-shadow: 0 0 3px 2px lightgray;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendarmonth td:active {
+    box-shadow: 0 0 3px 2px lightgray inset;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendarmonth td.this {
+    box-shadow: 0 0 3px 2px lightskyblue inset;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendarbody {
+    width: 100%;
+    height: 200px;
+    border-collapse: collapse;
+    border: 0;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendarbody td {
+    text-align: center;
+    cursor: pointer;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendarbody td:hover {
+    box-shadow: 0 0 3px 2px lightgray;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendarbody td:active {
+    box-shadow: 0 0 3px 2px lightgray inset;
+}
+
+.dbUI-date .dbUI-datepicker .date-body .calendarbody td.this {
+    box-shadow: 0 0 3px 2px lightskyblue inset;
+}
+
+.dbUI-date .dbUI-datepicker .date-time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    border-top: 1px dashed lightgray;
+    text-align: center;
+    position: relative;
+}
+
+.dbUI-date .dbUI-datepicker .date-time .btn {
+    position: absolute;
+    font-size: 14px;
+    top: 0;
+    right: 5px;
+    color: black;
+    text-shadow: 2px 1px 2px lightgray;
+    cursor: pointer;
+}
+
+.dbUI-date .dbUI-datepicker .date-time .btn:hover {
+    text-decoration: underline;
+}
+
+.dbUI-date .dbUI-datepicker .date-time .hh, .ss {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 30px;
+    float: left;
+    /* border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray; */
+    margin: 0 15px;
+    position: relative;
+    background-image: radial-gradient(farthest-side at 50% 50%, rgb(233, 233, 233), white);
+}
+
+.dbUI-date .dbUI-datepicker .date-time .mm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 30px;
+    float: left;
+    margin: 0 15px;
+    position: relative;
+    background-image: radial-gradient(farthest-side at 50% 50%, rgb(233, 233, 233), white);
+}
+
+.dbUI-date .dbUI-datepicker .date-time .hh::before {
+    content: "时";
+    position: absolute;
+    top: 0;
+    left: -23px;
+    color: rgb(151, 150, 150);
+}
+
+.dbUI-date .dbUI-datepicker .date-time .mm::before {
+    content: "分";
+    position: absolute;
+    top: 0;
+    left: -23px;
+    color: rgb(151, 150, 150);
+}
+
+.dbUI-date .dbUI-datepicker .date-time .ss::before {
+    content: "秒";
+    position: absolute;
+    top: 0;
+    left: -23px;
+    color: rgb(151, 150, 150);
+}
+
+.dbUI-date .dbUI-datepicker .select {
+    position: absolute;
+    width: 299px;
+    height: 70px;
+    left: 0;
+    top: 0;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dbUI-date .dbUI-datepicker .select.time {
+    position: relative;
+}
+
+.dbUI-date .dbUI-datepicker .select .s-hh, .s-mm, .s-ss {
+    position: relative;
+    margin: 0 20px;
+}
+
+.dbUI-date .dbUI-datepicker .select .s-hh, .s-mm, .s-ss .t-cur {
+    width: 30px;
+    background: radial-gradient(100px 14px at 50% 50%, rgb(209, 209, 209), transparent);
+    text-align: center;
+}
+
+.dbUI-date .dbUI-datepicker .select .t-prev {
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 10px;
+    background-image: url(icon/left.png);
+    background-position: center center;
+    background-size: 10px 15px;
+    background-repeat: no-repeat;
+    transform: rotate(90deg);
+    top: -12px;
+    left: 7px;
+    cursor: pointer;
+    opacity: 0.4;
+}
+
+.dbUI-date .dbUI-datepicker .select .t-next {
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 10px;
+    background-image: url(icon/left.png);
+    background-position: center center;
+    background-size: 10px 15px;
+    background-repeat: no-repeat;
+    transform: rotate(-90deg);
+    bottom: -12px;
+    left: 7px;
+    cursor: pointer;
+    opacity: 0.4;
+}
+
+.dbUI-date .dbUI-datepicker .select .s-hh::before {
+    content: "时";
+    position: absolute;
+    top: 0;
+    left: -26px;
+    color: rgb(151, 150, 150);
+}
+
+.dbUI-date .dbUI-datepicker .select .s-mm::before {
+    content: "分";
+    position: absolute;
+    top: 0;
+    left: -26px;
+    color: rgb(151, 150, 150);
+}
+
+.dbUI-date .dbUI-datepicker .select .s-ss::before {
+    content: "秒";
+    position: absolute;
+    top: 0;
+    left: -26px;
+    color: rgb(151, 150, 150);
+}
+
+.dbUI-date .dbUI-datepicker .select .s-btn {
+    position: absolute;
+    font-size: 14px;
+    right: 12px;
+    color: black;
+    text-shadow: 2px 1px 2px lightgray;
+    cursor: pointer;
+}
+
+.dbUI-date .dbUI-datepicker .select .s-btn:hover {
+    text-decoration: underline;
+}
+
+.dbUI-date .dbUI-datepicker .date-footer {
+    border-top: 1px dashed lightgray;
+    height: 30px;
+    padding: 5px 10px;
+    text-align: right;
+}
+
+.dbUI-date .dbUI-datepicker .date-footer button {
+    background: white;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    padding: 3px 8px;
+    margin: 0 3px;
+    width: 50px;
+    cursor: pointer;
+}
+
+.dbUI-date .dbUI-datepicker .date-footer button:hover {
+    background: lightskyblue;
+}
+
+.dbUI-date .dbUI-datepicker .prev, .next {
+    color: lightgray;
+}
+
+.dbUI-slider {
+    width: 60px;
+    height: 25px;
+    border: 0;
+    box-shadow: 1px 1px 2px 1px lightgray inset;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+}
+
+.dbUI-slider .slider-switch {
+    pointer-events: none;
+}
+
+.dbUI-slider .slider-switch.close {
+    position: absolute;
+    top: 4px;
+    left: 5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 2px 2px lightskyblue;
+    background-color: rgb(53, 175, 250);
+    transition: left .3s;
+}
+
+.dbUI-slider .slider-switch.close::before {
+    content: 'OFF';
+    position: absolute;
+    top: -5px;
+    left: 22px;
+    color: transparent;
+}
+
+.dbUI-slider .slider-switch.close::after {
+    content: 'OFF';
+    position: absolute;
+    top: -5px;
+    left: 22px;
+    color: black;
+    transition: color 1s;
+}
+
+.dbUI-slider .slider-switch.open {
+    position: absolute;
+    top: 4px;
+    left: 36px;
+    width: 18px;
+    height: 18px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 2px 2px lightskyblue;
+    background-color: rgb(53, 175, 250);
+    transition: left .3s;
+}
+
+.dbUI-slider .slider-switch.open::after {
+    content: 'NO';
+    position: absolute;
+    top: -5px;
+    right: 22px;
+    color: transparent;
+}
+
+.dbUI-slider .slider-switch.open::before {
+    content: 'NO';
+    position: absolute;
+    top: -5px;
+    right: 22px;
+    color: black;
+    transition: color 1s;
+}
+
+.dbUI-btn-mini {
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    padding: 5px 8px;
+    margin: 0 10px;
+    background-image: linear-gradient(#e7e7e7, #9e9e9e);
+    outline: none;
+}
+
+.dbUI-btn-mini:hover {
+    background-image: linear-gradient(#e7e7e7, #b9b9b9);
+}
+
+.dbUI-btn-mini:active {
+    background-image: linear-gradient(#9e9e9e, #e7e7e7);
+}
+
+.dbUI-btn-mini {
+    border: 0;
+    box-shadow: 0 0 3px 1px #aadaf8;
+    background-image: linear-gradient(#aadaf8, #4db8fa);
+}
+
+.dbUI-btn-mini:hover {
+    background-image: linear-gradient(#aadaf8, #4db8fa);
+}
+
+.dbUI-btn-mini:active {
+    background-image: linear-gradient(#4db8fa, #aadaf8);
+}
+
+@media only screen and (min-width:1024px) {
+    .dbUI-input input {
+        width: 140px;
+    }
+}
+
+@media only screen and (min-width:1124px) {
+    .dbUI-input input {
+        width: 150px;
+    }
+}
+
+@media only screen and (min-width:1224px) {
+    .dbUI-input input {
+        width: 160px;
+    }
+}
+
+@media only screen and (min-width:1440px) {
+    .dbUI-input input {
+        width: 170px;
+    }
+}
+
+@media only screen and (min-width:1600px) {
+    .dbUI-input input {
+        width: 180px;
+    }
+}
