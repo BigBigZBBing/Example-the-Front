@@ -367,7 +367,7 @@
                                 attrA.push({ key: attrs[t].localName, value: attrs[t].value });
                             }
                         }
-                        var dateinput = $dbUI.ctElement({ p: this, e: "input", attr: attrA });
+                        var dateinput = $dbUI.ctElement({ p: this, e: "input", c: ["dbUI-date-input"], attr: attrA });
                         $dbUI.ctElement({
                             p: this, e: "div", c: ["dbUI-datepicker"], ape: function () {
                                 var par = this;
@@ -703,6 +703,7 @@
         let onclear = function () {
             parent.previousSibling.value = "";
             parent.classList.remove("show");
+            parent.previousSibling.Touch("change");
         };
         let ontoday = function () {
             let cur = new Date();
@@ -717,6 +718,7 @@
                 format += " " + [hour.toString().PadLeft(2), minute.toString().PadLeft(2), second.toString().PadLeft(2)].join(":");
             parent.previousSibling.value = format;
             parent.classList.remove("show");
+            parent.previousSibling.Touch("change");
         };
         $dbUI.ctElement({
             p: parent, e: "div", c: ["date-footer"], ape: function () {
@@ -770,6 +772,7 @@
             dateObj.date = new Date(format);
             this.offsetParent.parentNode.parentNode.previousSibling.value = format;
             this.offsetParent.parentNode.parentNode.classList.remove("show");
+            this.offsetParent.parentNode.parentNode.previousSibling.Touch("change");
         };
         $dbUI.ctElement({
             p: parent, e: "table", c: ["calendarbody"], ape: function () {

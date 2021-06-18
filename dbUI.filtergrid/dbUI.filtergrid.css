@@ -22,27 +22,25 @@
 .dbUI-filtergrid thead .title .asc {
     position: absolute;
     right: -20px;
-    top: 0;
+    top: -3px;
     color: lightgray;
     cursor: pointer;
     width: 15px;
     height: 10px;
     font-size: 12px;
     user-select: none;
-    line-height: 8px;
 }
 
 .dbUI-filtergrid thead .title .desc {
     position: absolute;
     right: -20px;
-    bottom: 0;
+    bottom: -3px;
     color: lightgray;
     cursor: pointer;
     width: 15px;
     height: 10px;
     font-size: 12px;
     user-select: none;
-    line-height: 8px;
 }
 
 .dbUI-filtergrid thead .title .this {

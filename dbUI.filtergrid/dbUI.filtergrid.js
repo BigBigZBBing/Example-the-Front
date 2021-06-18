@@ -3,6 +3,7 @@
         if (config.data) {
             let source = config.data;
             let cache = source;
+            let filterObj = {};
             let thead = $dbUI.ctElement({ p: ele, e: "thead" });
             let tabTh = $dbUI.ctElement({ p: thead, e: "tr", attr: [{ key: "align", value: "right" }] });
             if (config.tabs && config.tabs.length > 0) {
@@ -95,8 +96,8 @@
                         });
                     }
                 });
-                //class="dbUI-date" format="datetime" placeholder="年-月-日" readonly="readonly"
                 if (col.filter) {
+                    filterObj[col.field] = "";
                     var filterColumn = $dbUI.ctElement({ p: filterTh, e: "th" });
                     var filterTool = $dbUI.ctElement({
                         p: filterColumn, e: col.select ? "select" : "input",
@@ -109,23 +110,36 @@
                         ],
                         event: [
                             {
-                                key: "change", action: function (e) {
-                                    let filterfield = this.getAttribute("filtercol");
-                                    if (filterfield) {
-                                        cache = source.filter(x => x[filterfield].indexOf(this.value) > -1);
-                                        RefrshTbody();
-                                    }
-                                }
+                                key: "change", action: filterChange
                             }
                         ]
                     });
                     if (col.date) {
                         $dbUI.initdatepicker();
+                        let dateinput = filterColumn.querySelector(".dbUI-date-input");
+                        dateinput.Bind("change", filterChange);
                     }
                     if (col.select) {
                         Array.from(col.select).forEach(sel => {
                             $dbUI.ctElement({ p: filterTool, e: "option", t: sel.key, attr: [{ key: "value", value: sel.value }] });
                         });
+                    }
+                    function filterChange(e) {
+                        let filterfield = this.getAttribute("filtercol");
+                        if (filterfield) {
+                            filterObj[filterfield] = this.value;
+                            cache = source;
+                            filterProcess();
+                            RefrshTbody();
+                        }
+                    }
+                    function filterProcess() {
+                        for (const key in filterObj) {
+                            if (Object.hasOwnProperty.call(filterObj, key)) {
+                                const obj = filterObj[key];
+                                cache = cache.filter(x => x[key].indexOf(obj) > -1);
+                            }
+                        }
                     }
                 }
             });

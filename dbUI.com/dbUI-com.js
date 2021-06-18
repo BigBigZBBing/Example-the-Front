@@ -149,6 +149,17 @@
     }
 
     /**
+     * @name: 触发事件
+     * @param {*} event
+     * @return {*}
+     */
+    HTMLElement.prototype.Touch = function (event) {
+        let evt = document.createEvent('HTMLEvents');
+        evt.initEvent(event, true, true);
+        this.dispatchEvent(evt);
+    }
+
+    /**
      * @name: 开关指定class
      * @param {*} key
      * @return {*}
