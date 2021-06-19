@@ -98,6 +98,56 @@
     }
 
     /**
+     * @name: Get请求
+     * @param {*} url
+     * @param {*} callback
+     * @param {*} async
+     * @return {*}
+     */
+    $dbUI.Get = function (url, callback, async) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", url, async || true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (200 == xhr.status) {
+                    callback(xhr.responseText);
+                }
+            }
+        }
+        xhr.send();
+    }
+
+    /**
+     * @name: Post请求
+     * @param {*} url
+     * @param {*} params
+     * @param {*} callback
+     * @param {*} async
+     * @return {*}
+     */
+    $dbUI.Post = function (url, params, callback, async = true) {
+        if (window.FormData) {
+            var fd = new FormData();
+            for (const key in params) {
+                if (Object.hasOwnProperty.call(params, key)) {
+                    const item = params[key];
+                    fd.set(key, item);
+                }
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.open("post", url, async);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (200 == xhr.status) {
+                        callback(xhr.responseText);
+                    }
+                }
+            }
+            xhr.send(fd);
+        }
+    }
+
+    /**
      * @name: 位数不够前面补0
      * @param {*} num   补充位数
      * @return {*}      结果
@@ -292,5 +342,7 @@
         var m = d.getMonth() + 1;
         return new Date(d.getFullYear() + '-' + m + '-' + d.getDate());
     }
+
+
 
 }(window))

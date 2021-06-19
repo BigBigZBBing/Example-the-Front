@@ -1,21 +1,18 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: '等线';
     font-size: 16px;
 }
 
 *::after {
     margin: 0;
     padding: 0;
-    font-family: '等线';
     font-size: 16px;
 }
 
 *::before {
     margin: 0;
     padding: 0;
-    font-family: '等线';
     font-size: 16px;
 }
 
@@ -1346,6 +1343,7 @@ body, html {
 .dbUI-date .dbUI-datepicker .date-body .calendaryear td {
     width: 25%;
     text-align: center;
+    border: 0;
 }
 
 .dbUI-date .dbUI-datepicker .date-body .calendaryear td:hover {
@@ -1373,6 +1371,7 @@ body, html {
 .dbUI-date .dbUI-datepicker .date-body .calendarmonth td {
     width: 25%;
     text-align: center;
+    border: 0;
 }
 
 .dbUI-date .dbUI-datepicker .date-body .calendarmonth td:hover {

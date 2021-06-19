@@ -1,48 +1,67 @@
 (function ($dbUI) {
     $dbUI.filtergrid = function (ele, config) {
-        if (config.data) {
-            let source = config.data;
-            let cache = source;
-            let filterObj = {};
-            let thead = $dbUI.ctElement({ p: ele, e: "thead" });
-            let tabTh = $dbUI.ctElement({ p: thead, e: "tr", attr: [{ key: "align", value: "right" }] });
-            if (config.tabs && config.tabs.length > 0) {
-                $dbUI.ctElement({
-                    p: tabTh, e: "th",
-                    attr: [
-                        { key: "colspan", value: config.cols.length }
-                    ],
-                    ape: function () {
-                        if (config.tabs.indexOf("filter") > -1) {
-                            $dbUI.ctElement({
-                                p: this, e: "div", c: ["cnf-filter"], t: "✐",
-                                event: [
-                                    {
-                                        key: "click", action: function (e) {
-                                            $dbUI.ctElement({
-                                                p: document.body, e: "div", c: ["dbUI-filter-console"], ape: function () {
-                                                    Array.from(config.cols).forEach(col => {
-                                                        $dbUI.ctElement({
-                                                            p: this, e: "div", c: ["dbUI-filter-console-col"],
-                                                            ape: function () {
-                                                                $dbUI.ctElement({ p: this, e: "" });
-                                                            }
-                                                        });
+        let source = config.data || [];
+        let cache = source;
+        let columns = config.cols;
+        let colcache = columns;
+        let filtercolumns = [];
+        let filterObj = {};
+        let pageIndex = config.pageIndex || 1;
+        let pageSize = config.pageSize || 10;
+        let pageTotal = config.pageTotal || 0;
+        let pageList = config.pageList || [10, 15, 20, 30, 50];
+        let postPacket = {};
+        let thead = $dbUI.ctElement({ p: ele, e: "thead" });
+        let tabTh = $dbUI.ctElement({ p: thead, e: "tr", attr: [{ key: "align", value: "right" }] });
+        let colTh = $dbUI.ctElement({ p: thead, e: "tr" });
+        let filterTh = $dbUI.ctElement({ p: thead, e: "tr" });
+        let tbody = $dbUI.ctElement({ p: ele, e: "tbody" });
+        let tfoot = $dbUI.ctElement({ p: ele, e: "tfoot" });
+        let tabfTh = $dbUI.ctElement({ p: tfoot, e: "tr" });
+        if (config.tabs && config.tabs.length > 0) {
+            $dbUI.ctElement({
+                p: tabTh, e: "th",
+                attr: [
+                    { key: "colspan", value: colcache.length }
+                ],
+                ape: function () {
+                    if (config.tabs.indexOf("filter") > -1) {
+                        $dbUI.ctElement({
+                            p: this, e: "div", c: ["cnf-filter"], t: "✐",
+                            event: [
+                                {
+                                    key: "click", action: function (e) {
+                                        $dbUI.ctElement({
+                                            p: document.body, e: "div", c: ["dbUI-filter-console"], ape: function () {
+                                                Array.from(colcache).forEach(col => {
+                                                    $dbUI.ctElement({
+                                                        p: this, e: "div", c: ["dbUI-filter-console-col"],
+                                                        ape: function () {
+                                                            $dbUI.ctElement({ p: this, e: "" });
+                                                        }
                                                     });
-                                                }
-                                            });
-                                        }
+                                                });
+                                            }
+                                        });
                                     }
-                                ]
-                            });
-                        }
+                                }
+                            ]
+                        });
                     }
-                });
-            }
-            let colTh = $dbUI.ctElement({ p: thead, e: "tr" });
-            let filterTh = $dbUI.ctElement({ p: thead, e: "tr" });
-            let tbody = $dbUI.ctElement({ p: ele, e: "tbody" });
-            Array.from(config.cols).forEach(col => {
+                }
+            });
+        }
+
+        if (config.url) {
+
+        }
+
+        RefrshThead();
+        RequestData();
+        RefrshTbody();
+
+        function RefrshThead() {
+            Array.from(colcache).forEach(col => {
                 $dbUI.ctElement({
                     p: colTh, e: "th",
                     attr: [
@@ -52,7 +71,7 @@
                     ],
                     ape: function () {
                         $dbUI.ctElement({
-                            p: this, e: "label", c: ["title"], t: col.name,
+                            p: this, e: "div", c: ["title"], t: col.title,
                             ape: function () {
                                 $dbUI.ctElement({
                                     p: this, e: "div", c: ["asc"], t: "▲",
@@ -68,6 +87,9 @@
                                                     ele.RemoveClass("this");
                                                 });
                                                 this.AddClass("this");
+                                                postPacket["sort"] = this.getAttribute("filtercol");
+                                                postPacket["order"] = "asc";
+                                                RequestData();
                                                 RefrshTbody();
                                             }
                                         }
@@ -87,6 +109,9 @@
                                                     ele.RemoveClass("this");
                                                 });
                                                 this.AddClass("this");
+                                                postPacket["sort"] = this.getAttribute("filtercol");
+                                                postPacket["order"] = "desc";
+                                                RequestData();
                                                 RefrshTbody();
                                             }
                                         }
@@ -96,6 +121,7 @@
                         });
                     }
                 });
+
                 if (col.filter) {
                     filterObj[col.field] = "";
                     var filterColumn = $dbUI.ctElement({ p: filterTh, e: "th" });
@@ -124,39 +150,167 @@
                             $dbUI.ctElement({ p: filterTool, e: "option", t: sel.key, attr: [{ key: "value", value: sel.value }] });
                         });
                     }
-                    function filterChange(e) {
-                        let filterfield = this.getAttribute("filtercol");
-                        if (filterfield) {
-                            filterObj[filterfield] = this.value;
-                            cache = source;
-                            filterProcess();
-                            RefrshTbody();
-                        }
-                    }
-                    function filterProcess() {
-                        for (const key in filterObj) {
-                            if (Object.hasOwnProperty.call(filterObj, key)) {
-                                const obj = filterObj[key];
-                                cache = cache.filter(x => x[key].indexOf(obj) > -1);
-                            }
-                        }
-                    }
                 }
             });
-            function RefrshTbody() {
-                tbody.innerHTML = "";
-                Array.from(cache).forEach(row => {
-                    let tr = $dbUI.ctElement({ p: tbody, e: "tr" });
-                    Array.from(config.cols).forEach(col => {
-                        let value = "";
-                        if (row[col.field]) {
-                            value = row[col.field];
-                        }
-                        $dbUI.ctElement({ p: tr, e: "td", t: value });
-                    });
+        }
+        function RefrshTbody() {
+            tbody.innerHTML = "";
+            let temp = cache;
+            if (config.pager && !config.url) {
+                temp = Array.from(cache).slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
+                pageTotal = cache.length;
+            }
+            Array.from(temp).forEach(row => {
+                let tr = $dbUI.ctElement({ p: tbody, e: "tr" });
+                Array.from(colcache).forEach(col => {
+                    let value = "";
+                    if (row[col.field]) {
+                        value = row[col.field];
+                    }
+                    $dbUI.ctElement({ p: tr, e: "td", t: value });
+                });
+            });
+            RefrshPager();
+        }
+        function RefrshPager() {
+            tabfTh.innerHTML = "";
+            if (config.pager) {
+                $dbUI.ctElement({
+                    p: tabfTh, e: "td",
+                    attr: [
+                        { key: "colspan", value: colcache.length }
+                    ],
+                    ape: function () {
+                        let maxIndex = Math.ceil(pageTotal / pageSize);
+                        let pagermain = $dbUI.ctElement({ p: this, e: "div", c: ["dbUI-filtergrid-pager"] });
+                        $dbUI.ctElement({ p: pagermain, e: "label", t: "To" });
+                        $dbUI.ctElement({
+                            p: pagermain, e: "select", c: ["dbUI-filtergrid-pagerlist"],
+                            event: [{ key: "change", action: selectPageList }],
+                            ape: function () {
+                                Array.from(pageList).forEach(sel => {
+                                    $dbUI.ctElement({
+                                        p: this, e: "option", t: sel, attr: [
+                                            { key: "value", value: sel },
+                                            pageSize == sel ? { key: "selected", value: "" } : null,
+                                        ]
+                                    });
+                                });
+                            }
+                        });
+                        $dbUI.ctElement({ p: pagermain, e: "label", t: "items" });
+                        $dbUI.ctElement({ p: pagermain, e: "div", c: ["dbUI-filtergrid-pager-segment"] });
+                        $dbUI.ctElement({
+                            p: pagermain, e: "label", c: ["dbUI-filtergrid-pager-page"], t: "Page",
+                            attr: [pageIndex == 1 ? { key: "style", value: "pointer-events:none;" } : null],
+                            event: [
+                                {
+                                    key: "click", action: function () {
+                                        pageIndex = 1;
+                                        RequestData();
+                                        RefrshTbody();
+                                    }
+                                }
+                            ]
+                        });
+                        $dbUI.ctElement({
+                            p: pagermain, e: "label", c: ["dbUI-fonts-left", "dbUI-filtergrid-pager-prev"],
+                            attr: [pageIndex == 1 ? { key: "style", value: "pointer-events:none;" } : null],
+                            event: [
+                                {
+                                    key: "click", action: function () {
+                                        pageIndex = pageIndex - 1 > 0 ? pageIndex - 1 : 1;
+                                        RequestData();
+                                        RefrshTbody();
+                                    }
+                                }
+                            ]
+                        });
+                        $dbUI.ctElement({
+                            p: pagermain, e: "input", c: ["dbUI-filtergrid-pager-index"],
+                            attr: [{ key: "value", value: pageIndex }],
+                            event: [
+                                {
+                                    key: "change", action: function () {
+                                        pageIndex = Number(this.value) > maxIndex ? maxIndex : Number(this.value);
+                                        RequestData();
+                                        RefrshTbody();
+                                    }
+                                }
+                            ]
+                        });
+                        $dbUI.ctElement({
+                            p: pagermain, e: "label", c: ["dbUI-fonts-right", "dbUI-filtergrid-pager-next"],
+                            attr: [maxIndex == pageIndex ? { key: "style", value: "pointer-events:none;" } : null],
+                            event: [
+                                {
+                                    key: "click", action: function () {
+                                        pageIndex = pageIndex + 1;
+                                        RequestData();
+                                        RefrshTbody();
+                                    }
+                                }
+                            ]
+                        });
+                        $dbUI.ctElement({
+                            p: pagermain, e: "label", c: ["dbUI-filtergrid-pager-end"], t: "End",
+                            attr: [maxIndex == pageIndex ? { key: "style", value: "pointer-events:none;" } : null],
+                            event: [
+                                {
+                                    key: "click", action: function () {
+                                        pageIndex = maxIndex;
+                                        RequestData();
+                                        RefrshTbody();
+                                    }
+                                }
+                            ]
+                        });
+                        $dbUI.ctElement({ p: pagermain, e: "div", c: ["dbUI-filtergrid-pager-segment"] });
+                        $dbUI.ctElement({ p: pagermain, e: "label", t: "Total" });
+                        $dbUI.ctElement({ p: pagermain, e: "label", t: pageTotal.toString() });
+                        $dbUI.ctElement({ p: pagermain, e: "label", t: "items" });
+                    }
                 });
             }
-            RefrshTbody();
+        }
+        function filterChange(e) {
+            let filterfield = this.getAttribute("filtercol");
+            if (filterfield) {
+                filterObj[filterfield] = this.value;
+                cache = source;
+                filterProcess();
+                RequestData();
+                if (config.pager && !config.url)
+                    RefrshTbody();
+            }
+        }
+        function filterProcess() {
+            for (const key in filterObj) {
+                if (Object.hasOwnProperty.call(filterObj, key)) {
+                    const obj = filterObj[key];
+                    postPacket[key] = obj && obj.length > 0 ? obj : "";
+                    cache = cache.filter(x => x[key].indexOf(obj) > -1);
+                }
+            }
+        }
+        function selectPageList(e) {
+            pageSize = this.value;
+            filterProcess();
+            RequestData();
+            if (config.pager && !config.url)
+                RefrshTbody();
+        }
+        function RequestData() {
+            if (config.url) {
+                postPacket.pageIndex = pageIndex;
+                postPacket.pageSize = pageSize;
+                $dbUI.Post(config.url, postPacket, function (response) {
+                    let jsonObj = JSON.parse(response);
+                    pageTotal = jsonObj["total"] || 0;
+                    cache = jsonObj["data"] || [];
+                    RefrshTbody();
+                });
+            }
         }
     }
 }($dbUI))

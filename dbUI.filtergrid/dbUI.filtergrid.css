@@ -1,5 +1,6 @@
 .dbUI-filtergrid {
     text-align: center;
+    box-shadow: 0 0 20px 1px lightblue inset;
 }
 
 .dbUI-filtergrid * {
@@ -14,8 +15,8 @@
 }
 
 .dbUI-filtergrid thead .title {
-    display: block;
-    width: fit-content;
+    display: table-cell;
+    width: auto;
     position: relative;
 }
 
@@ -49,8 +50,9 @@
 
 .dbUI-filtergrid thead .cnf-filter {
     border: 1px solid lightgray;
-    width: fit-content;
+    width: auto;
     width: 20px;
+    height: 20px;
     cursor: pointer;
     padding-right: 3px;
 }
@@ -79,12 +81,77 @@
     height: 30px;
     border: 1px solid lightgray;
     border-radius: 5px;
-    padding: 0 8px 0 8px;
+    padding: 0 20px 0 8px;
     width: 100%;
 }
 
 .dbUI-filtergrid tr th:last-child, td:last-child {
     border-right: 1px solid lightgray;
+}
+
+.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager {
+    width: 400px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager label {
+    display: inline-block;
+    margin: 0px 3px;
+    cursor: pointer;
+}
+
+.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pagerlist {
+    display: inline-block;
+    width: auto;
+    height: 30px;
+}
+
+.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-prev {
+    display: inline-block;
+    height: 30px;
+    line-height: 25px;
+}
+
+.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-prev::before {
+    height: 30px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-index {
+    width: 40px;
+    text-align: center;
+}
+
+.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-next {
+    display: inline-block;
+    height: 30px;
+    line-height: 25px;
+}
+
+.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-page {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-end {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-next::before {
+    height: 30px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-segment {
+    width: 0;
+    border: 1px solid lightgray;
+    height: 30px;
+    margin: 0px 4px;
 }
 
 .dbUI-filter-console {

@@ -3,45 +3,84 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="../dbUI.com/dbUI-com.js"></script>
     <link rel="stylesheet" href="./dbUI.filtergrid.css">
-    <link rel="stylesheet" href="../dbUI.controls/dbUI.controls.css">
-    <script src="./dbUI.filtergrid.js"></script>
+    <link rel="stylesheet" href="../dbUI.com/dbUI-fonts.css"">
+    <link rel=" stylesheet" href="../dbUI.controls/dbUI.controls.css">
+    <script src=" ./dbUI.filtergrid.js">
+    </script>
 </head>
 
 <body>
-
     <script src="../dbUI.controls/dbUI.controls.js"></script>
     <script>
         console.log($dbUI);
     </script>
     <table class="dbUI-filtergrid" cellpadding="0" cellspacing="0" id="test1"></table>
-
     <script>
+        var data = [
+            { name: "张炳彬", old: "27", sex: "0", sleep: "0" },
+            { name: "康圣上", old: "25", sex: "0", sleep: "1" },
+            { name: "安得权", old: "32", sex: "0", sleep: "1" },
+            { name: "忽悠🐏", old: "32", sex: "1", sleep: "1" },
+            { name: "和百冬", old: "32", sex: "0", sleep: "0" },
+            { name: "孙博翔", old: "25", sex: "0", sleep: "1" },
+            { name: "张炳彬", old: "27", sex: "0", sleep: "0" },
+            { name: "康圣上", old: "25", sex: "0", sleep: "1" },
+            { name: "安得权", old: "32", sex: "0", sleep: "1" },
+            { name: "忽悠🐏", old: "32", sex: "1", sleep: "1" },
+            { name: "和百冬", old: "32", sex: "0", sleep: "0" },
+            { name: "孙博翔", old: "25", sex: "0", sleep: "1" },
+            { name: "张炳彬", old: "27", sex: "0", sleep: "0" },
+            { name: "康圣上", old: "25", sex: "0", sleep: "1" },
+            { name: "安得权", old: "32", sex: "0", sleep: "1" },
+            { name: "忽悠🐏", old: "32", sex: "1", sleep: "1" },
+            { name: "和百冬", old: "32", sex: "0", sleep: "0" },
+            { name: "孙博翔", old: "25", sex: "0", sleep: "1" },
+            { name: "张炳彬", old: "27", sex: "0", sleep: "0" },
+            { name: "康圣上", old: "25", sex: "0", sleep: "1" },
+            { name: "安得权", old: "32", sex: "0", sleep: "1" },
+            { name: "忽悠🐏", old: "32", sex: "1", sleep: "1" },
+            { name: "和百冬", old: "32", sex: "0", sleep: "0" },
+            { name: "孙博翔", old: "25", sex: "0", sleep: "1" },
+            { name: "张炳彬", old: "27", sex: "0", sleep: "0" },
+            { name: "康圣上", old: "25", sex: "0", sleep: "1" },
+            { name: "安得权", old: "32", sex: "0", sleep: "1" },
+            { name: "忽悠🐏", old: "32", sex: "1", sleep: "1" },
+            { name: "和百冬", old: "32", sex: "0", sleep: "0" },
+            { name: "孙博翔", old: "25", sex: "0", sleep: "1" },
+            { name: "安得权", old: "32", sex: "0", sleep: "1" },
+            { name: "忽悠🐏", old: "32", sex: "1", sleep: "1" },
+            { name: "和百冬", old: "32", sex: "0", sleep: "0" },
+            { name: "孙博翔", old: "25", sex: "0", sleep: "1" },
+        ];
+
         $dbUI.filtergrid(document.getElementById("test1"), {
             cols: [
-                { name: "测试列表1", field: "col1", filter: true, date: true },
-                { name: "测试列表2", field: "col2", width: 300 },
-                { name: "测试列表3", field: "col3", filter: true },
+                { title: "名字", field: "name", filter: true, date: true },
+                { title: "年龄", field: "old", width: 300 },
                 {
-                    name: "测试列表4", field: "col4", width: 200, filter: true, select: [
+                    title: "性别", field: "sex", filter: true, select: [
+                        { key: "请选择", value: "" },
+                        { key: "男", value: "0" },
+                        { key: "女", value: "1" }
+                    ]
+                },
+                {
+                    title: "休息", field: "sleep", width: 200, filter: true, select: [
                         { key: "请选择", value: "" },
                         { key: "否", value: "0" },
                         { key: "是", value: "1" }
                     ]
                 },
             ],
-            data: [
-                { col1: "sfs1", col2: "sfs2", col3: "sfs3", col4: "1" },
-                { col1: "sfs1", col2: "sfc2", col3: "sfc3", col4: "0" },
-                { col1: "sfs1", col2: "sfs2", col3: "sfs3", col4: "1" },
-                { col1: "sfs1", col2: "sft2", col3: "sft3", col4: "0" },
-                { col1: "sfs1", col2: "sfs2", col3: "sfs3", col4: "1" },
-            ],
-            tabs: ["filter"]
+            // data: data,
+            // pageTotal: data.length,
+            // tabs: ["filter"],
+            url: "https://localhost:44303/Home/filtergrid",
+            pager: true
         });
     </script>
 </body>
