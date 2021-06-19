@@ -52,15 +52,13 @@
             });
         }
 
-        if (config.url) {
-
-        }
-
-        RefrshThead();
+        RefreshThead();
         RequestData();
-        RefrshTbody();
+        RefreshTbody();
 
-        function RefrshThead() {
+        function RefreshThead() {
+            colTh.innerHTML = "";
+            filterTh.innerHTML = "";
             Array.from(colcache).forEach(col => {
                 $dbUI.ctElement({
                     p: colTh, e: "th", c: ["dbUI-filtergrid-head-cell"],
@@ -90,7 +88,7 @@
                                                 postPacket["sort"] = this.getAttribute("filtercol");
                                                 postPacket["order"] = "asc";
                                                 RequestData();
-                                                RefrshTbody();
+                                                RefreshTbody();
                                             }
                                         }
                                     ],
@@ -112,7 +110,7 @@
                                                 postPacket["sort"] = this.getAttribute("filtercol");
                                                 postPacket["order"] = "desc";
                                                 RequestData();
-                                                RefrshTbody();
+                                                RefreshTbody();
                                             }
                                         }
                                     ],
@@ -123,8 +121,13 @@
                 });
 
                 if (col.filter) {
-                    filterObj[col.field] = "";
                     var filterColumn = $dbUI.ctElement({ p: filterTh, e: "th", c: ["dbUI-filtergrid-head-filter-cell"] });
+                    let tool = filtercolumns.FirstOrDefault(x => x.key == col.field);
+                    if (tool && Object.hasOwnProperty(filterObj, col.field)) {
+                        filterColumn.appendChild(tool.html);
+                        return;
+                    }
+                    filterObj[col.field] = "";
                     var filterTool = $dbUI.ctElement({
                         p: filterColumn, e: col.select ? "select" : "input",
                         c: [!col.date || "dbUI-date"],
@@ -141,7 +144,7 @@
                         ]
                     });
                     if (col.date) {
-                        $dbUI.initdatepicker();
+                        filterTool = $dbUI.initdatepicker(filterTool);
                         let dateinput = filterColumn.querySelector(".dbUI-date-input");
                         dateinput.Bind("change", filterChange);
                     }
@@ -150,10 +153,13 @@
                             $dbUI.ctElement({ p: filterTool, e: "option", t: sel.key, attr: [{ key: "value", value: sel.value }] });
                         });
                     }
+                    if (tool) tool.html = filterTool;
+                    else
+                        filtercolumns.push({ key: col.field, html: filterTool });
                 }
             });
         }
-        function RefrshTbody() {
+        function RefreshTbody() {
             tbody.innerHTML = "";
             let temp = cache;
             if (config.pager && !config.url) {
@@ -162,6 +168,9 @@
             }
             Array.from(temp).forEach(row => {
                 let tr = $dbUI.ctElement({ p: tbody, e: "tr", c: ["dbUI-filtergrid-body-row"] });
+                if (config.rowIndex) {
+                    $dbUI.ctElement({ p: tr, e: "td", c: ["dbUI-filtergrid-head-cell"] });
+                }
                 Array.from(colcache).forEach(col => {
                     let value = "";
                     if (row[col.field]) {
@@ -170,9 +179,9 @@
                     $dbUI.ctElement({ p: tr, e: "td", c: ["dbUI-filtergrid-body-cell"], t: value });
                 });
             });
-            RefrshPager();
+            RefreshPager();
         }
-        function RefrshPager() {
+        function RefreshPager() {
             tabfTh.innerHTML = "";
             if (config.pager) {
                 $dbUI.ctElement({
@@ -208,7 +217,7 @@
                                     key: "click", action: function () {
                                         pageIndex = 1;
                                         RequestData();
-                                        RefrshTbody();
+                                        RefreshTbody();
                                     }
                                 }
                             ]
@@ -221,7 +230,7 @@
                                     key: "click", action: function () {
                                         pageIndex = pageIndex - 1 > 0 ? pageIndex - 1 : 1;
                                         RequestData();
-                                        RefrshTbody();
+                                        RefreshTbody();
                                     }
                                 }
                             ]
@@ -234,7 +243,7 @@
                                     key: "change", action: function () {
                                         pageIndex = Number(this.value) > maxIndex ? maxIndex : Number(this.value);
                                         RequestData();
-                                        RefrshTbody();
+                                        RefreshTbody();
                                     }
                                 }
                             ]
@@ -247,7 +256,7 @@
                                     key: "click", action: function () {
                                         pageIndex = pageIndex + 1;
                                         RequestData();
-                                        RefrshTbody();
+                                        RefreshTbody();
                                     }
                                 }
                             ]
@@ -260,7 +269,7 @@
                                     key: "click", action: function () {
                                         pageIndex = maxIndex;
                                         RequestData();
-                                        RefrshTbody();
+                                        RefreshTbody();
                                     }
                                 }
                             ]
@@ -273,7 +282,7 @@
                 });
             }
         }
-        function filterChange(e) {
+        function filterChange() {
             let filterfield = this.getAttribute("filtercol");
             if (filterfield) {
                 filterObj[filterfield] = this.value;
@@ -281,7 +290,7 @@
                 filterProcess();
                 RequestData();
                 if (config.pager && !config.url)
-                    RefrshTbody();
+                    RefreshTbody();
             }
         }
         function filterProcess() {
@@ -298,7 +307,7 @@
             filterProcess();
             RequestData();
             if (config.pager && !config.url)
-                RefrshTbody();
+                RefreshTbody();
         }
         function RequestData() {
             if (config.url) {
@@ -308,8 +317,39 @@
                     let jsonObj = JSON.parse(response);
                     pageTotal = jsonObj["total"] || 0;
                     cache = jsonObj["data"] || [];
-                    RefrshTbody();
+                    RefreshTbody();
                 });
+            }
+        }
+
+        return {
+            get cols() {
+                return cols;
+            },
+            set cols(newValue) {
+                colcache = newValue;
+                cols = newValue;
+            },
+            RefreshFilter: function () {
+                cache = source;
+                let fields = cols.Select(x => x.field);
+                for (const key in filterObj) {
+                    if (fields.indexOf(key) == -1) {
+                        delete filterObj[key];
+                    }
+                }
+                RefreshThead();
+                RequestData();
+                filterProcess();
+                RefreshTbody();
+            },
+            Refresh: function () {
+                cache = source;
+                filterObj = {};
+                RefreshThead();
+                RequestData();
+                filterProcess();
+                RefreshTbody();
             }
         }
     }

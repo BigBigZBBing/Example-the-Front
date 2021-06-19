@@ -342,14 +342,14 @@
 
 //日期选择器组件渲染
 (function ($dbUI) {
-    $dbUI.initdatepicker = function initdatepicker(params) {
-        var dbUI_dates = document.getElementsByClassName("dbUI-date");
+    $dbUI.initdatepicker = function initdatepicker(ele) {
+        var dbUI_dates = ele ? [ele] : document.getElementsByClassName("dbUI-date");
         for (var i = dbUI_dates.length - 1; i >= 0; i--) {
             var date = dbUI_dates[i];
             var tagName = date.tagName;
             if (tagName == "INPUT") {
                 var currNode = date.parentNode;
-                $dbUI.ctElement({
+                let select = $dbUI.ctElement({
                     p: currNode, e: "div", c: ["dbUI-date"], ape: function () {
                         var attrs = date.attributes;
                         var attrA = [];
@@ -427,6 +427,7 @@
                     }
                 });
                 currNode.removeChild(date);
+                return select;
             }
         }
     }; $dbUI.initdatepicker();

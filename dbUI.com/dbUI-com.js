@@ -275,6 +275,37 @@
     }
 
     /**
+     * @name: 仿照C#Linq的Where
+     * @param {*} func
+     * @return {*}
+     */
+    Array.prototype.Where = function (func) {
+        let result = null;
+        this.forEach(arr => {
+            if (func(arr))
+                result.push(result);
+        });
+        return result;
+    }
+
+    /**
+     * @name: 仿照C#Linq的FirstOrDefault
+     * @param {*} func
+     * @return {*}
+     */
+    Array.prototype.FirstOrDefault = function (func) {
+        let result = null;
+        let first = true;
+        this.forEach(arr => {
+            if (first && func(arr)) {
+                result = arr;
+                first = false;
+            }
+        });
+        return result;
+    }
+
+    /**
      * @name: 仿照C#Linq的OrderBy
      * @param {*} selector
      * @param {*} comparer
