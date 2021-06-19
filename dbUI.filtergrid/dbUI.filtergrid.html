@@ -97,39 +97,31 @@
             pager: true
         });
 
-        document.getElementById("refresh1").Bind("click", function () {
-            handle.cols = [
-                { title: "名字", field: "name", filter: true, date: true },
-                { title: "年龄", field: "old", width: 300 },
-                {
-                    title: "性别", field: "sex", filter: true, select: [
-                        { key: "请选择", value: "" },
-                        { key: "男", value: "0" },
-                        { key: "女", value: "1" }
-                    ], templet: function (row) {
-                        switch (row["sleep"]) {
-                            case "0": return "男";
-                            case "1": return "女";
-                        }
-                        return "";
+        var newCols = [
+            { title: "名字", field: "name", filter: true, date: true },
+            { title: "年龄", field: "old", width: 300 },
+            {
+                title: "性别", field: "sex", filter: true, select: [
+                    { key: "请选择", value: "" },
+                    { key: "男", value: "0" },
+                    { key: "女", value: "1" }
+                ], templet: function (row) {
+                    switch (row["sex"]) {
+                        case "0": return "男";
+                        case "1": return "女";
                     }
+                    return "";
                 }
-            ];
+            }
+        ];
+
+        document.getElementById("refresh1").Bind("click", function () {
+            handle.cols = newCols;
             handle.RefreshFilter();
         });
 
         document.getElementById("refresh2").Bind("click", function () {
-            handle.cols = [
-                { title: "名字", field: "name", filter: true, date: true },
-                { title: "年龄", field: "old", width: 300 },
-                {
-                    title: "性别", field: "sex", filter: true, select: [
-                        { key: "请选择", value: "" },
-                        { key: "男", value: "0" },
-                        { key: "女", value: "1" }
-                    ]
-                }
-            ];
+            handle.cols = newCols;
             handle.Refresh();
         });
 

@@ -123,7 +123,7 @@
                 if (col.filter) {
                     var filterColumn = $dbUI.ctElement({ p: filterTh, e: "th", c: ["dbUI-filtergrid-head-filter-cell"] });
                     let tool = filtercolumns.FirstOrDefault(x => x.key == col.field);
-                    if (tool && Object.hasOwnProperty(filterObj, col.field)) {
+                    if (tool && filterObj.hasOwnProperty(col.field)) {
                         filterColumn.appendChild(tool.html);
                         return;
                     }
@@ -295,7 +295,7 @@
         }
         function filterProcess() {
             for (const key in filterObj) {
-                if (Object.hasOwnProperty.call(filterObj, key)) {
+                if (filterObj.hasOwnProperty(key)) {
                     const obj = filterObj[key];
                     postPacket[key] = obj && obj.length > 0 ? obj : "";
                     cache = cache.filter(x => x[key].indexOf(obj) > -1);
