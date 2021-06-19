@@ -153,52 +153,54 @@
     margin: 0px 3px;
 }
 
-.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pagerlist {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager .dbUI-filtergrid-pagerlist {
     display: inline-block;
     width: auto;
     height: 30px;
 }
 
-.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-prev {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager .dbUI-filtergrid-pager-prev {
     display: inline-block;
     height: 30px;
     line-height: 25px;
+    margin: 10px;
 }
 
-.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-prev::before {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager .dbUI-filtergrid-pager-prev::before {
     height: 30px;
     vertical-align: middle;
     cursor: pointer;
 }
 
-.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-index {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager .dbUI-filtergrid-pager-index {
     width: 40px;
     text-align: center;
 }
 
-.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-next {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager .dbUI-filtergrid-pager-next {
     display: inline-block;
     height: 30px;
     line-height: 25px;
+    margin: 10px;
 }
 
-.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-page {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager .dbUI-filtergrid-pager-page {
     display: inline-block;
     cursor: pointer;
 }
 
-.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-end {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager .dbUI-filtergrid-pager-end {
     display: inline-block;
     cursor: pointer;
 }
 
-.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-next::before {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager .dbUI-filtergrid-pager-next::before {
     height: 30px;
     vertical-align: middle;
     cursor: pointer;
 }
 
-.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-segment {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager .dbUI-filtergrid-pager-segment {
     width: 0;
     border: 1px solid lightgray;
     height: 30px;

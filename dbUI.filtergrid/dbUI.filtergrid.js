@@ -214,7 +214,7 @@
                             ]
                         });
                         $dbUI.ctElement({
-                            p: pagermain, e: "label", c: ["dbUI-fonts-left", "dbUI-filtergrid-pager-prev"],
+                            p: pagermain, e: "label", c: ["dbUI-fonts-left1", "dbUI-filtergrid-pager-prev"],
                             attr: [pageIndex == 1 ? { key: "style", value: "pointer-events:none;" } : null],
                             event: [
                                 {
@@ -240,7 +240,7 @@
                             ]
                         });
                         $dbUI.ctElement({
-                            p: pagermain, e: "label", c: ["dbUI-fonts-right", "dbUI-filtergrid-pager-next"],
+                            p: pagermain, e: "label", c: ["dbUI-fonts-right1", "dbUI-filtergrid-pager-next"],
                             attr: [maxIndex == pageIndex ? { key: "style", value: "pointer-events:none;" } : null],
                             event: [
                                 {

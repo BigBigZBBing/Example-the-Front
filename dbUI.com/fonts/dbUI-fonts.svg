@@ -9,4 +9,6 @@
 <glyph unicode="&#x20;" horiz-adv-x="512" d="" />
 <glyph unicode="&#xe900;" glyph-name="fonts-left" horiz-adv-x="1638" d="M0 468.48l1024 491.52v-1024zM983.040 714.24h655.36v-532.48h-655.36z" />
 <glyph unicode="&#xe901;" glyph-name="fonts-right" horiz-adv-x="1638" d="M1638.4 468.48l-1024 491.52v-1024zM0 714.24h614.4v-532.48h-614.4z" />
+<glyph unicode="&#xe902;" glyph-name="fonts-left1" d="M0 468.48l1024 491.52v-1024z" />
+<glyph unicode="&#xe903;" glyph-name="fonts-right1" d="M1024 468.48l-1024 491.52v-1024z" />
 </font></defs></svg>

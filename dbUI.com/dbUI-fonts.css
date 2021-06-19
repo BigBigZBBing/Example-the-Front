@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'dbUI-fonts';
-  src:  url('fonts/dbUI-fonts.eot?5wjvtf');
-  src:  url('fonts/dbUI-fonts.eot?5wjvtf#iefix') format('embedded-opentype'),
-    url('fonts/dbUI-fonts.ttf?5wjvtf') format('truetype'),
-    url('fonts/dbUI-fonts.woff?5wjvtf') format('woff'),
-    url('fonts/dbUI-fonts.svg?5wjvtf#dbUI-fonts') format('svg');
+  src:  url('fonts/dbUI-fonts.eot?58fr0u');
+  src:  url('fonts/dbUI-fonts.eot?58fr0u#iefix') format('embedded-opentype'),
+    url('fonts/dbUI-fonts.ttf?58fr0u') format('truetype'),
+    url('fonts/dbUI-fonts.woff?58fr0u') format('woff'),
+    url('fonts/dbUI-fonts.svg?58fr0u#dbUI-fonts') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,11 +25,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.dbUI-fonts-right:before {
-  content: "\e901";
+.dbUI-fonts-left1:before {
+  content: "\e902";
+  color: #ccc;
+}
+.dbUI-fonts-right1:before {
+  content: "\e903";
   color: #ccc;
 }
 .dbUI-fonts-left:before {
   content: "\e900";
+  color: #ccc;
+}
+.dbUI-fonts-right:before {
+  content: "\e901";
   color: #ccc;
 }
