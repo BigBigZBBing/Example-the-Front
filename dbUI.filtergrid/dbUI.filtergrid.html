@@ -67,14 +67,26 @@
                         { key: "请选择", value: "" },
                         { key: "男", value: "0" },
                         { key: "女", value: "1" }
-                    ]
+                    ], templet: function (row) {
+                        switch (row["sex"]) {
+                            case "0": return "男";
+                            case "1": return "女";
+                        }
+                        return "";
+                    }
                 },
                 {
                     title: "休息", field: "sleep", width: 200, filter: true, select: [
                         { key: "请选择", value: "" },
                         { key: "否", value: "0" },
                         { key: "是", value: "1" }
-                    ]
+                    ], templet: function (row) {
+                        switch (row["sleep"]) {
+                            case "0": return "否";
+                            case "1": return "是";
+                        }
+                        return "";
+                    }
                 },
             ],
             data: data,
@@ -94,7 +106,13 @@
                         { key: "请选择", value: "" },
                         { key: "男", value: "0" },
                         { key: "女", value: "1" }
-                    ]
+                    ], templet: function (row) {
+                        switch (row["sleep"]) {
+                            case "0": return "男";
+                            case "1": return "女";
+                        }
+                        return "";
+                    }
                 }
             ];
             handle.RefreshFilter();

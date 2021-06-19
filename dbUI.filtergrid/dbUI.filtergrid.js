@@ -114,7 +114,7 @@
                                             }
                                         }
                                     ],
-                                })
+                                });
                             }
                         });
                     }
@@ -176,7 +176,7 @@
                     if (row[col.field]) {
                         value = row[col.field];
                     }
-                    $dbUI.ctElement({ p: tr, e: "td", c: ["dbUI-filtergrid-body-cell"], t: value });
+                    $dbUI.ctElement({ p: tr, e: "td", c: ["dbUI-filtergrid-body-cell"], t: col.templet ? col.templet(row) : value });
                 });
             });
             RefreshPager();
