@@ -12,12 +12,12 @@
         let pageList = config.pageList || [10, 15, 20, 30, 50];
         let postPacket = {};
         let thead = $dbUI.ctElement({ p: ele, e: "thead" });
-        let tabTh = $dbUI.ctElement({ p: thead, e: "tr", attr: [{ key: "align", value: "right" }] });
-        let colTh = $dbUI.ctElement({ p: thead, e: "tr" });
-        let filterTh = $dbUI.ctElement({ p: thead, e: "tr" });
+        let tabTh = $dbUI.ctElement({ p: thead, e: "tr", c: ["dbUI-filtergrid-head-tab-row"], attr: [{ key: "align", value: "right" }] });
+        let colTh = $dbUI.ctElement({ p: thead, e: "tr", c: ["dbUI-filtergrid-head-name-row"] });
+        let filterTh = $dbUI.ctElement({ p: thead, e: "tr", c: ["dbUI-filtergrid-head-filter-row"] });
         let tbody = $dbUI.ctElement({ p: ele, e: "tbody" });
         let tfoot = $dbUI.ctElement({ p: ele, e: "tfoot" });
-        let tabfTh = $dbUI.ctElement({ p: tfoot, e: "tr" });
+        let tabfTh = $dbUI.ctElement({ p: tfoot, e: "tr", c: ["dbUI-filtergrid-foot-row"] });
         if (config.tabs && config.tabs.length > 0) {
             $dbUI.ctElement({
                 p: tabTh, e: "th",
@@ -63,7 +63,7 @@
         function RefrshThead() {
             Array.from(colcache).forEach(col => {
                 $dbUI.ctElement({
-                    p: colTh, e: "th",
+                    p: colTh, e: "th", c: ["dbUI-filtergrid-head-cell"],
                     attr: [
                         { key: "align", value: "center" },
                         { key: "width", value: col.width },
@@ -124,7 +124,7 @@
 
                 if (col.filter) {
                     filterObj[col.field] = "";
-                    var filterColumn = $dbUI.ctElement({ p: filterTh, e: "th" });
+                    var filterColumn = $dbUI.ctElement({ p: filterTh, e: "th", c: ["dbUI-filtergrid-head-filter-cell"] });
                     var filterTool = $dbUI.ctElement({
                         p: filterColumn, e: col.select ? "select" : "input",
                         c: [!col.date || "dbUI-date"],
@@ -161,13 +161,13 @@
                 pageTotal = cache.length;
             }
             Array.from(temp).forEach(row => {
-                let tr = $dbUI.ctElement({ p: tbody, e: "tr" });
+                let tr = $dbUI.ctElement({ p: tbody, e: "tr", c: ["dbUI-filtergrid-body-row"] });
                 Array.from(colcache).forEach(col => {
                     let value = "";
                     if (row[col.field]) {
                         value = row[col.field];
                     }
-                    $dbUI.ctElement({ p: tr, e: "td", t: value });
+                    $dbUI.ctElement({ p: tr, e: "td", c: ["dbUI-filtergrid-body-cell"], t: value });
                 });
             });
             RefrshPager();
@@ -176,7 +176,7 @@
             tabfTh.innerHTML = "";
             if (config.pager) {
                 $dbUI.ctElement({
-                    p: tabfTh, e: "td",
+                    p: tabfTh, e: "td", c: ["dbUI-filtergrid-foot-cell"],
                     attr: [
                         { key: "colspan", value: colcache.length }
                     ],
@@ -266,9 +266,9 @@
                             ]
                         });
                         $dbUI.ctElement({ p: pagermain, e: "div", c: ["dbUI-filtergrid-pager-segment"] });
-                        $dbUI.ctElement({ p: pagermain, e: "label", t: "Total" });
-                        $dbUI.ctElement({ p: pagermain, e: "label", t: pageTotal.toString() });
-                        $dbUI.ctElement({ p: pagermain, e: "label", t: "items" });
+                        $dbUI.ctElement({ p: pagermain, e: "span", t: "Total" });
+                        $dbUI.ctElement({ p: pagermain, e: "span", t: pageTotal.toString() });
+                        $dbUI.ctElement({ p: pagermain, e: "span", t: "items" });
                     }
                 });
             }

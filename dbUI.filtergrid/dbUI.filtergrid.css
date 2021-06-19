@@ -1,3 +1,5 @@
+/* 公共配置 */
+
 .dbUI-filtergrid {
     text-align: center;
     box-shadow: 0 0 20px 1px lightblue inset;
@@ -13,6 +15,56 @@
     border-bottom: 0px;
     border-right: 0px;
 }
+
+/* 配置gird边框 */
+
+.dbUI-filtergrid thead tr:last-child th {
+    border-bottom: 1px solid lightgray;
+}
+
+.dbUI-filtergrid thead tr th[rowspan="2"] {
+    border-bottom: 1px solid lightgray;
+}
+
+.dbUI-filtergrid tr:last-child td {
+    border-bottom: 1px solid lightgray;
+}
+
+.dbUI-filtergrid tr th:last-child, td:last-child {
+    border-right: 1px solid lightgray;
+}
+
+/* 筛选列头工具 */
+
+.dbUI-filtergrid thead .cnf-filter {
+    border: 1px solid lightgray;
+    width: auto;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    padding-right: 3px;
+}
+
+.dbUI-filter-console {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 300px;
+    box-shadow: 0 0 3px 3px lightgray;
+    background-color: white;
+    user-select: none;
+}
+
+.dbUI-filter-console-col {
+    width: 295px;
+    border: 1px solid lightgray;
+    height: 40px;
+    border-radius: 5px;
+    margin: 3px 2px;
+}
+
+/* 配置列头部分 */
 
 .dbUI-filtergrid thead .title {
     display: table-cell;
@@ -48,28 +100,9 @@
     color: rgb(156, 156, 156);
 }
 
-.dbUI-filtergrid thead .cnf-filter {
-    border: 1px solid lightgray;
-    width: auto;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    padding-right: 3px;
-}
+/* 配置列头列尾的控件样式 */
 
-.dbUI-filtergrid thead tr:last-child th {
-    border-bottom: 1px solid lightgray;
-}
-
-.dbUI-filtergrid thead tr th[rowspan="2"] {
-    border-bottom: 1px solid lightgray;
-}
-
-.dbUI-filtergrid tr:last-child td {
-    border-bottom: 1px solid lightgray;
-}
-
-.dbUI-filtergrid tr input {
+.dbUI-filtergrid thead .dbUI-filtergrid-head-filter-row .dbUI-filtergrid-head-filter-cell input {
     height: 30px;
     border: 1px solid lightgray;
     border-radius: 5px;
@@ -77,7 +110,7 @@
     width: auto;
 }
 
-.dbUI-filtergrid tr select {
+.dbUI-filtergrid thead .dbUI-filtergrid-head-filter-row .dbUI-filtergrid-head-filter-cell select {
     height: 30px;
     border: 1px solid lightgray;
     border-radius: 5px;
@@ -85,90 +118,88 @@
     width: 100%;
 }
 
-.dbUI-filtergrid tr th:last-child, td:last-child {
-    border-right: 1px solid lightgray;
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell input {
+    height: 30px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 0 8px 0 8px;
+    width: auto;
 }
 
-.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell select {
+    height: 30px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 0 20px 0 8px;
+    width: 100%;
+}
+
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager {
     width: 400px;
     height: 30px;
     display: flex;
     align-items: center;
 }
 
-.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager label {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager label {
     display: inline-block;
     margin: 0px 3px;
     cursor: pointer;
 }
 
-.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pagerlist {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager span {
+    display: inline-block;
+    margin: 0px 3px;
+}
+
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pagerlist {
     display: inline-block;
     width: auto;
     height: 30px;
 }
 
-.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-prev {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-prev {
     display: inline-block;
     height: 30px;
     line-height: 25px;
 }
 
-.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-prev::before {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-prev::before {
     height: 30px;
     vertical-align: middle;
     cursor: pointer;
 }
 
-.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-index {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-index {
     width: 40px;
     text-align: center;
 }
 
-.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-next {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-next {
     display: inline-block;
     height: 30px;
     line-height: 25px;
 }
 
-.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-page {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-page {
     display: inline-block;
     cursor: pointer;
 }
 
-.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-end {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-end {
     display: inline-block;
     cursor: pointer;
 }
 
-.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-next::before {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-next::before {
     height: 30px;
     vertical-align: middle;
     cursor: pointer;
 }
 
-.dbUI-filtergrid tfoot tr td .dbUI-filtergrid-pager-segment {
+.dbUI-filtergrid tfoot .dbUI-filtergrid-foot-row .dbUI-filtergrid-foot-cell .dbUI-filtergrid-pager-segment {
     width: 0;
     border: 1px solid lightgray;
     height: 30px;
     margin: 0px 4px;
-}
-
-.dbUI-filter-console {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 300px;
-    box-shadow: 0 0 3px 3px lightgray;
-    background-color: white;
-    user-select: none;
-}
-
-.dbUI-filter-console-col {
-    width: 295px;
-    border: 1px solid lightgray;
-    height: 40px;
-    border-radius: 5px;
-    margin: 3px 2px;
 }
