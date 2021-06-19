@@ -66,13 +66,14 @@
 
 /* 配置列头部分 */
 
-.dbUI-filtergrid thead .title {
+.dbUI-filtergrid thead .dbUI-filtergrid-head-name-row .dbUI-filtergrid-head-cell .title {
     display: table-cell;
     width: auto;
+    font-weight: 700;
     position: relative;
 }
 
-.dbUI-filtergrid thead .title .asc {
+.dbUI-filtergrid thead .dbUI-filtergrid-head-name-row .dbUI-filtergrid-head-cell .title .asc {
     position: absolute;
     right: -20px;
     top: -3px;
@@ -84,7 +85,7 @@
     user-select: none;
 }
 
-.dbUI-filtergrid thead .title .desc {
+.dbUI-filtergrid thead .dbUI-filtergrid-head-name-row .dbUI-filtergrid-head-cell .title .desc {
     position: absolute;
     right: -20px;
     bottom: -3px;
@@ -96,7 +97,7 @@
     user-select: none;
 }
 
-.dbUI-filtergrid thead .title .this {
+.dbUI-filtergrid thead .dbUI-filtergrid-head-name-row .dbUI-filtergrid-head-cell .title .this {
     color: rgb(156, 156, 156);
 }
 
