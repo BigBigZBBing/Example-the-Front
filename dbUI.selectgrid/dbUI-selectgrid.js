@@ -47,7 +47,7 @@
                 event: [
                     {
                         key: "click", action: function () {
-                            container.Toggle("show");
+                            container.ToggleClass("show");
                             input.click(), input.focus();
                         }
                     }
@@ -71,7 +71,7 @@
                 event: [
                     {
                         key: "click", action: function () {
-                            container.Toggle("show");
+                            container.ToggleClass("show");
                         }
                     }
                 ]

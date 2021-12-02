@@ -204,8 +204,9 @@
      * @return {*}
      */
     HTMLElement.prototype.Touch = function (event) {
-        let evt = document.createEvent('HTMLEvents');
-        evt.initEvent(event, true, true);
+        // let evt = document.createEvent('HTMLEvents');
+        // evt.initEvent(event, true, true);
+        var evt = new Event(event, { "bubbles": true, "cancelable": true });
         this.dispatchEvent(evt);
     }
 
@@ -214,7 +215,7 @@
      * @param {*} key
      * @return {*}
      */
-    HTMLElement.prototype.Toggle = function (key) {
+    HTMLElement.prototype.ToggleClass = function (key) {
         if (this.classList.contains(key)) {
             this.classList.remove(key);
         }
@@ -345,7 +346,7 @@
     };
 
     /**
-     * @name: 删除子级元素
+     * @name: 删除元素内指定的元素
      * @param {*} element
      * @return {*}
      */
@@ -373,7 +374,4 @@
         var m = d.getMonth() + 1;
         return new Date(d.getFullYear() + '-' + m + '-' + d.getDate());
     }
-
-
-
 }(window))

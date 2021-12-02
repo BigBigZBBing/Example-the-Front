@@ -118,8 +118,8 @@
                     event: [
                         {
                             key: 'click', action: function () {
-                                let values = this.parentE().prevE().prevE().children[0];
-                                let childs = this.parentE().childE('dd');
+                                let values = this.parentNode.Prev().Prev().children[0];
+                                let childs = this.parentNode.getElementsByTagName('dd');
                                 for (let t1 = 0; t1 < source.length; t1++) {
                                     source[t1].selected = null;
                                 }
@@ -189,8 +189,8 @@
         var dbUI_selects = document.getElementsByClassName('dbUI-select');
         Array.from(dbUI_selects).forEach(e => {
             if (e.classList.contains('show')
-                && !currobj.parentE().classList.contains('dbUI-select2')
-                && !currobj.parentE().classList.contains('search')) {
+                && !currobj.parentNode.classList.contains('dbUI-select2')
+                && !currobj.parentNode.classList.contains('search')) {
                 e.classList.remove('show');
                 e.getElementsByClassName('dbUI-select-dl')[0].classList.remove('show');
             }
@@ -890,6 +890,15 @@
     });
 }($dbUI));
 
+(function ($dbUI) {
+    let inputs = document.getElementsByClassName('dbUI-input');
+    let eleArr = inputs;
+    for (let t1 = eleArr.length - 1; t1 >= 0; t1--) {
+
+
+    }
+}($dbUI));
+
 //输入框组件渲染
 (function ($dbUI) {
     let inputs = document.getElementsByClassName('dbUI-input');
@@ -916,7 +925,7 @@
                         p: this, e: "input", attr: temp, event: [
                             {
                                 key: "input", action: function () {
-                                    let next = this.nextE();
+                                    let next = this.Next();
                                     if (next.classList.contains("show")) {
                                         next.classList.remove("show");
                                     }
@@ -947,7 +956,7 @@
                     let autocomplete = attrArr.filter(x => x.localName == "autocomplete");
                     if (autocomplete.length > 0) {
                         let Auto = document.getElementById(autocomplete[0].value);
-                        if (!Auto) {
+                        if (Auto) {
                             $dbUI.ctElement({
                                 p: this, e: "dl", c: ["dbUI-input-dl"], ape: function () {
                                     let url = Auto.getAttribute("url");
@@ -991,7 +1000,7 @@
                     $dbUI.ctElement({
                         p: this, e: "i", c: ["dbUI-password-i"], event: [{
                             key: "click", action: function () {
-                                var prev = this.prevE();
+                                var prev = this.Prev();
                                 if (this.classList.contains('show')) {
                                     prev.setAttribute('type', 'password');
                                     this.classList.remove('show');
