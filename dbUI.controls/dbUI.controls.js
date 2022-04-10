@@ -892,123 +892,110 @@
 
 //输入框组件渲染
 (function ($dbUI) {
-    let inputs = document.getElementsByClassName('dbUI-input');
-    let eleArr = inputs;
-    let autoEvent = {};
-    for (let t1 = eleArr.length - 1; t1 >= 0; t1--) {
-        let arr = eleArr[t1];
-        let tag = arr.tagName;
-        if ("INPUT" != tag) continue;
-        let currNode = arr.parentNode;
-
-        let attrArr = arr.attributes;
-        let temp = [];
-        for (let t2 = 0, len = attrArr.length; t2 < len; t2++) {
-            const arr1 = attrArr[t2];
-            let ab = { key: arr1.localName, value: arr1.value };
-            temp.push(ab);
-        }
-        if (!arr.type || ("text" === arr.type)) {
-            $dbUI.ctElement({
-                pa: arr, e: "div", c: ["dbUI-input"], ape: function () {
-                    let childText = [];
-                    let put = $dbUI.ctElement({
-                        p: this, e: "input", attr: temp, event: [
-                            {
-                                key: "input", action: function () {
-                                    let next = this.nextE();
-                                    if (next.classList.contains("show")) {
-                                        next.classList.remove("show");
-                                    }
-                                    for (let t3 = 0; t3 < childText.length; t3++) {
-                                        const e = childText[t3];
-                                        if (this.value.length > 0 && e.indexOf(this.value) > -1) {
-                                            $dbUI.ctElement({
-                                                p: next, e: "dd", t: e, event: [{
-                                                    key: "click", action: function () {
-                                                        put.value = this.innerText;
-                                                    }
-                                                }]
-                                            });
-                                        }
-                                    }
-                                    if (next.innerHTML.length > 0) {
-                                        if (!next.classList.contains("show")) {
-                                            next.classList.add("show");
-                                        }
-                                    }
-                                }
-                            }
-                        ]
-                    });
-                    if (put.classList.contains('dbUI-input'))
-                        put.classList.remove('dbUI-input');
-                    let attrArr = Array.from(arr.attributes);
-                    let autocomplete = attrArr.filter(x => x.localName == "autocomplete");
-                    if (autocomplete.length > 0) {
-                        let Auto = document.getElementById(autocomplete[0].value);
-                        if (!Auto) {
-                            $dbUI.ctElement({
-                                p: this, e: "dl", c: ["dbUI-input-dl"], ape: function () {
-                                    let url = Auto.getAttribute("url");
-                                    if (url) {
-                                        $dbUI.get(url, function (res) {
-                                            let data = JSON.parse(res);
-                                            for (let fo1 = 0, len = data.length; fo1 < len; fo1++) {
-                                                const child = data[fo1];
-                                                childText.push(child);
+    $dbUI.inittextbox = function (ele) {
+        let inputs = ele ? [ele] : document.getElementsByClassName('dbUI-input');
+        let autoEvent = {};
+        for (let t1 = inputs.length - 1; t1 >= 0; t1--) {
+            let input = inputs[t1];
+            if ("INPUT" != input.tagName) continue;
+            let inputAttrs = input.attributes;
+            let copyAttrs = Array.from(inputAttrs).Select(x => { return { key: x.localName, value: x.value } });
+            if (!input.type || input.type === "text") {
+                $dbUI.ctElement({
+                    pa: input, e: "div", c: ["dbUI-input"], ape: function () {
+                        let childText = [];
+                        let ntextbox = $dbUI.ctElement({
+                            p: this, e: "input", attr: copyAttrs, event: [
+                                {
+                                    key: "input", action: function () {
+                                        let next = this.Next();
+                                        next.innerHTML = "";
+                                        next.RemoveClass("show");
+                                        Array.from(childText).forEach(ele => {
+                                            if (this.value.length > 0 && ele.indexOf(this.value) > -1) {
+                                                $dbUI.ctElement({
+                                                    p: next, e: "dd", t: ele, event: [{
+                                                        key: "click", action: function () {
+                                                            ntextbox.value = this.innerText;
+                                                        }
+                                                    }]
+                                                });
+                                                next.AddClass("show");
                                             }
                                         });
                                     }
-                                    else {
-                                        let childs = Auto.getElementsByTagName("child");
-                                        for (let fo1 = 0, len = childs.length; fo1 < len; fo1++) {
-                                            const child = childs[fo1];
-                                            childText.push(child.innerText);
+                                }
+                            ]
+                        });
+                        ntextbox.RemoveClass("dbUI-input");
+
+                        //自动补全模块
+                        let autoComplete = copyAttrs.FirstOrDefault(x => x.key == "autocomplete");
+                        if (autoComplete) {
+                            let autoList = document.getElementById(autoComplete.value);
+                            if (autoList) {
+                                $dbUI.ctElement({
+                                    p: this, e: "dl", c: ["dbUI-input-dl"], ape: function () {
+                                        let url = autoList.getAttribute("url");
+                                        if (url) {
+                                            $dbUI.get(url, function (res) {
+                                                let data = JSON.parse(res);
+                                                for (let fo1 = 0, len = data.length; fo1 < len; fo1++) {
+                                                    const child = data[fo1];
+                                                    childText.push(child);
+                                                }
+                                            });
+                                        }
+                                        else {
+                                            let childs = autoList.querySelectorAll("child");
+                                            Array.from(childs).forEach(ele => {
+                                                childText.push(ele.innerText);
+                                            });
                                         }
                                     }
-                                }
-                            });
-                            Auto.remove();
+                                });
+                                autoList.remove();
+                            }
+                        }
+
+                        autoEvent[input.id] = function (data) {
+                            childText = data;
                         }
                     }
-                    autoEvent[arr.id] = function (data) {
-                        childText = data;
-                    }
-                }
-            });
+                });
 
-        } else if ("password" === arr.type) {
-            $dbUI.ctElement({
-                pa: arr, e: "div", c: ["dbUI-password"], ape: function () {
-                    let put = $dbUI.ctElement({
-                        p: this, e: "input", attr: temp, event: [{
-                            key: "keyup", action: function () {
-                                this.value = this.value.replace(/[\u4e00-\u9fa5]/ig, '');
-                            }
-                        }]
-                    });
-                    $dbUI.ctElement({
-                        p: this, e: "i", c: ["dbUI-password-i"], event: [{
-                            key: "click", action: function () {
-                                var prev = this.prevE();
-                                if (this.classList.contains('show')) {
-                                    prev.setAttribute('type', 'password');
-                                    this.classList.remove('show');
-                                } else {
-                                    prev.setAttribute('type', 'tel');
-                                    this.classList.add('show');
+            } else if ("password" === input.type) {
+                $dbUI.ctElement({
+                    pa: input, e: "div", c: ["dbUI-password"], ape: function () {
+                        let put = $dbUI.ctElement({
+                            p: this, e: "input", attr: copyAttrs, event: [{
+                                key: "keyup", action: function () {
+                                    this.value = this.value.replace(/[\u4e00-\u9fa5]/ig, '');
                                 }
-                            }
-                        }]
-                    })
-                    if (put.classList.contains('dbUI-input'))
-                        put.classList.remove('dbUI-input');
-                }
-            });
+                            }]
+                        });
+                        $dbUI.ctElement({
+                            p: this, e: "i", c: ["dbUI-password-i"], event: [{
+                                key: "click", action: function () {
+                                    var prev = this.prevE();
+                                    if (this.classList.contains('show')) {
+                                        prev.setAttribute('type', 'password');
+                                        this.classList.remove('show');
+                                    } else {
+                                        prev.setAttribute('type', 'tel');
+                                        this.classList.add('show');
+                                    }
+                                }
+                            }]
+                        })
+                        if (put.classList.contains('dbUI-input'))
+                            put.classList.remove('dbUI-input');
+                    }
+                });
+            }
+            input.remove();
         }
-        arr.remove();
-    }
+    }; $dbUI.inittextbox();
     document.addEventListener('click', function () {
         var currobj = event.target;
         var dbUI_inputs = document.getElementsByClassName('dbUI-input');
