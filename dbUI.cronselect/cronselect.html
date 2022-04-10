@@ -29,14 +29,14 @@
             let input = document.getElementById("cronBtn");
             let config = document.getElementById("config");
             //使用解析
-            let dates = $db.cronanalytice(input.value, new Date());
+            let dates = $dbUI.cronanalytice(input.value, new Date());
 
             let contanier = document.getElementById("contanier");
             contanier.innerHTML = "";
             if (config.classList.contains("show")) config.classList.remove("show");
             for (let index = 0; index < dates.length; index++) {
                 const element = new Date(dates[index]);
-                $db.ctElement({
+                $dbUI.ctElement({
                     p: contanier,
                     e: "p",
                     t: `${element.getFullYear()}-${fillZero(element.getMonth() + 1, 2)}-${fillZero(element.getDate(), 2)} ${fillZero(element.getHours(), 2)}:${fillZero(element.getMinutes(), 2)}:${fillZero(element.getSeconds(), 2)}`

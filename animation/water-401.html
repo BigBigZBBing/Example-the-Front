@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style scoped>
+        svg {
+            width: 0;
+            height: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(ellipse at 0% 0%, aliceblue, #5cacee);
+        }
+
+        #main {
+            width: 50%;
+            height: fit-content;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 100px;
+            float: left;
+        }
+
+        #header {
+            width: 100%;
+            height: 30px;
+            background: white;
+            box-shadow: 10px 10px 15px 8px #03a9f4;
+        }
+
+        #left .water {
+            position: absolute;
+            top: 87%;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #03a9f4;
+            background: linear-gradient(#ffffff, #51a3ef);
+            animation: animate 4s ease-in;
+        }
+
+        #left {
+            width: fit-content;
+            height: fit-content;
+            position: relative;
+            filter: url(#gooey);
+        }
+
+        #hit {
+            width: 50%;
+            height: fit-content;
+            float: right;
+            user-select: none;
+            filter: url(#gooey1);
+            font-size: 40px;
+        }
+
+        #hit p:first-child {
+            font-size: 55px;
+        }
+
+        #hit p {
+            font-weight: 700;
+            color: white;
+            text-shadow: 3px 3px 3px #03a9f4;
+        }
+
+        #text {
+            font-size: 250px;
+            color: white;
+            user-select: none;
+            text-shadow: 5px 15px 0px #51a3ef;
+            font-weight: 600;
+        }
+
+        @keyframes animate {
+            0% {
+                top: 0;
+            }
+
+            30% {
+                top: 87%;
+            }
+
+            100% {
+                top: 87%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="main">
+            <div id="left">
+                <div id="header"></div>
+                <span id="text">401</span>
+                <div id="header"></div>
+            </div>
+        </div>
+        <div id="hit">
+            <p>OOPS!</p>
+            <p>You are not authorized to view this page!</p>
+        </div>
+
+        <svg>
+            <filter id="gooey">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="6" />
+                <feColorMatrix values="
+                        1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        0 0 0 25 -15" />
+            </filter>
+
+            <filter id="gooey1">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" />
+                <feColorMatrix values="
+                        1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        0 0 0 8 -2" />
+            </filter>
+        </svg>
+    </div>
+    <script>
+        function randomNum(minNum, maxNum) {
+            switch (arguments.length) {
+                case 1:
+                    return parseInt(Math.random() * minNum + 1, 10);
+                case 2:
+                    return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+                default:
+                    return 0;
+            }
+        }
+
+        window.setInterval(function () {
+            var main = document.getElementById("left");
+            var water = document.createElement("div");
+            water.className = "water";
+            water.style = "left:" + randomNum(0, 95) + "%;";
+            main.appendChild(water);
+            setTimeout(function () {
+                water.remove();
+            }, 8000);
+        }, 700);
+
+    </script>
+</body>
+
+</html>
