@@ -294,15 +294,11 @@
      * @return {*}
      */
     Array.prototype.FirstOrDefault = function (func) {
-        let result = null;
-        let first = true;
-        this.forEach(arr => {
-            if (first && func(arr)) {
-                result = arr;
-                first = false;
-            }
-        });
-        return result;
+        for (let i = 0; i < this.length; i++) {
+            const arr = this[i];
+            if (func(arr)) return arr;
+        }
+        return null;
     }
 
     /**
@@ -323,6 +319,21 @@
             });
         }
         else return this.sort();
+    };
+
+    /**
+     * @name: 仿照C#Linq的Exists
+     * @param {*} func
+     * @return {*}
+     */
+    Array.prototype.Exists = function (func) {
+        for (let i = 0; i < this.length; i++) {
+            const arr = this[i];
+            if (func(arr)) {
+                return true;
+            }
+        }
+        return false;
     };
 
     /**
